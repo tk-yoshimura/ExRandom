@@ -4,17 +4,19 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class KumaraswamyRandom : Random{
+    public class KumaraswamyRandom : Random {
         readonly MT19937 mt;
         readonly double inv_a, inv_b;
 
         public KumaraswamyRandom(MT19937 mt, double a = 2, double b = 2) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(a > 0) || !(b > 0)) {
-                throw new ArgumentException();
+            if (!(a > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(a));
+            }
+            if (!(b > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(b));
             }
 
             this.mt = mt;

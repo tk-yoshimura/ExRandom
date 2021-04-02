@@ -4,17 +4,19 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class WeibullRandom : Random{
+    public class WeibullRandom : Random {
         readonly MT19937 mt;
         readonly double inv_alpha, beta, lambda;
 
         public WeibullRandom(MT19937 mt, double alpha = 1, double beta = 1, double lambda = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(alpha > 0) || !(beta > 0)) {
-                throw new ArgumentException();
+            if (!(alpha > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(alpha));
+            }
+            if (!(beta > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(beta));
             }
 
             this.mt = mt;

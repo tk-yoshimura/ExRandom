@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExRandom;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExRandom.Tests {
     [TestClass()]
@@ -14,7 +9,7 @@ namespace ExRandom.Tests {
             int[] seeds = { 0x123, 0x234, 0x345, 0x456 };
 
             MT19937 mt = new MT19937(seeds);
-            
+
             var output = mt.NextArray(1000);
 
             Assert.AreEqual(output[0], 1067595299u);
@@ -26,7 +21,7 @@ namespace ExRandom.Tests {
         [TestMethod()]
         public void RangeTest() {
             const int double_mantissa_bits = 52, uint32_bits = 32, uint64_bits = uint32_bits * 2;
-            
+
             UInt64 f = ((UInt64)(~0u >> (uint64_bits - double_mantissa_bits)) << uint32_bits) | ~0u;
             UInt64 z = 0;
 

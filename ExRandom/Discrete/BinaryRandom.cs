@@ -4,12 +4,12 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Discrete {
-    public class BinaryRandom : Random{
+    public class BinaryRandom : Random {
         readonly MT19937 mt;
-        
+
         public BinaryRandom(MT19937 mt) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;

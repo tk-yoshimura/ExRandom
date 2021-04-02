@@ -4,12 +4,12 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class FishersZRandom : Random{
+    public class FishersZRandom : Random {
         readonly SnedecorsFRandom sd;
 
         public FishersZRandom(MT19937 mt, uint d1 = 2, uint d2 = 2) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.sd = new SnedecorsFRandom(mt, d1, d2);
@@ -20,7 +20,7 @@ namespace ExRandom.Continuous {
 
             do {
                 s = sd.Next();
-            } while(s <= 0);
+            } while (s <= 0);
 
             return Math.Log(s) * 0.5;
         }

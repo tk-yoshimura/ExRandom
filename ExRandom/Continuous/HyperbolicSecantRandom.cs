@@ -4,12 +4,12 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class HyperbolicSecantRandom : Random{
+    public class HyperbolicSecantRandom : Random {
         readonly MT19937 mt;
 
         public HyperbolicSecantRandom(MT19937 mt) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;

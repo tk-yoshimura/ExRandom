@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("ExRandom")]
-[assembly: AssemblyDescription("各種確率分布に依る乱数生成クラス群")]
+[assembly: AssemblyDescription("Random number generation class group by various probability distributions")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ExRandom")]
-[assembly: AssemblyCopyright("Copyright © 2017-2020 T.Yoshimura All Rights Reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2017-2021 T.Yoshimura All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,4 +31,4 @@ using System.Runtime.InteropServices;
 // すべての値を指定するか、下のように '*' を使ってビルドおよびリビジョン番号を 
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.1.*")]
+[assembly: AssemblyVersion("3.2.*")]

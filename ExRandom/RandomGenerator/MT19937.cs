@@ -52,11 +52,11 @@ namespace ExRandom {
     public class MT19937 {
         /* Floating-point number processing of .NET Core 3.0+ conforms to IEEE 754-2008. */
         const int double_mantissa_bits = 52, uint32_bits = 32, uint64_bits = uint32_bits * 2;
-        const UInt64 mantissa_full = ((UInt64)(~0u >> (uint64_bits - double_mantissa_bits)) << uint32_bits) | (UInt64)(~0u);
+        const ulong mantissa_full = ((ulong)(~0u >> (uint64_bits - double_mantissa_bits)) << uint32_bits) | ~0u;
         static readonly double one = 1 / Math.ScaleB(mantissa_full, -double_mantissa_bits);
 
-        UInt32 pos;
-        readonly UInt32[] state = new UInt32[624];
+        uint pos;
+        readonly uint[] state = new uint[624];
 
         /// <summary>コンストラクタ 時間による乱数種設定</summary>
         public MT19937() {
@@ -74,19 +74,19 @@ namespace ExRandom {
         }
 
         /// <summary>32bit符号なし整数の乱数値の生成</summary>
-        private UInt32 Generate() {
-            const UInt32 N = 624, M = 397, MATRIX = 0x9908B0DF, UPPER_MASK = 0x80000000, LOWER_MASK = 0x7FFFFFFF;
+        private uint Generate() {
+            const uint N = 624, M = 397, MATRIX = 0x9908B0DF, UPPER_MASK = 0x80000000, LOWER_MASK = 0x7FFFFFFF;
 
             int kk;
-            UInt32 y;
+            uint y;
 
             unchecked {
-                if(pos >= N) {
-                    for(kk = 0; kk < N - M; kk++) {
+                if (pos >= N) {
+                    for (kk = 0; kk < N - M; kk++) {
                         y = (state[kk] & UPPER_MASK) | (state[kk + 1] & LOWER_MASK);
                         state[kk] = state[kk + M] ^ (y >> 1) ^ (((y & 1) != 0) ? MATRIX : 0);
                     }
-                    for(; kk < N - 1; kk++) {
+                    for (; kk < N - 1; kk++) {
                         y = (state[kk] & UPPER_MASK) | (state[kk + 1] & LOWER_MASK);
                         state[kk] = state[kk - (N - M)] ^ (y >> 1) ^ (((y & 1) != 0) ? MATRIX : 0);
                     }
@@ -115,59 +115,62 @@ namespace ExRandom {
 
         /// <summary>乱数種指定</summary>
         public void Initialize(int seed) {
-            state[0] = (UInt32)seed;
-            for(pos = 1; pos < state.Length; pos++) {
-                state[pos] = 0x6C078965 * (state[pos - 1] ^ (state[pos - 1] >> 30)) + pos;
+            unchecked {
+                state[0] = (uint)seed;
+                for (pos = 1; pos < state.Length; pos++) {
+                    state[pos] = 0x6C078965 * (state[pos - 1] ^ (state[pos - 1] >> 30)) + pos;
+                }
             }
         }
 
         /// <summary>乱数種指定配列版</summary>
         public void Initialize(int[] seeds) {
-            if(seeds == null || seeds.Length < 1) {
-                throw new ArgumentException(nameof(seeds));
+            if (seeds is null || seeds.Length < 1) {
+                throw new ArgumentNullException(nameof(seeds));
             }
 
-            const int N = 624;
+            unchecked {
+                const int N = 624;
 
-            int i = 1, j = 0, k = seeds.Length > N ? seeds.Length : N;
+                int i = 1, j = 0, k = seeds.Length > N ? seeds.Length : N;
 
-            Initialize(19650218);
+                Initialize(19650218);
 
-            for(; k > 0; k--) {
-                state[i] = (state[i] ^ ((state[i - 1] ^ (state[i - 1] >> 30)) * 1664525u)) + (UInt32)seeds[j] + (UInt32)j;
-                i++;
-                j++;
-                if(i >= N) {
-                    state[0] = state[N - 1];
-                    i = 1;
+                for (; k > 0; k--) {
+                    state[i] = (state[i] ^ ((state[i - 1] ^ (state[i - 1] >> 30)) * 1664525u)) + (uint)seeds[j] + (uint)j;
+                    i++;
+                    j++;
+                    if (i >= N) {
+                        state[0] = state[N - 1];
+                        i = 1;
+                    }
+                    if (j >= seeds.Length) {
+                        j = 0;
+                    }
                 }
-                if(j >= seeds.Length) {
-                    j = 0;
+                for (k = N - 1; k > 0; k--) {
+                    state[i] = (state[i] ^ ((state[i - 1] ^ (state[i - 1] >> 30)) * 1566083941u)) - (uint)i;
+                    i++;
+                    if (i >= N) {
+                        state[0] = state[N - 1];
+                        i = 1;
+                    }
                 }
+
+                state[0] = 0x80000000;
             }
-            for(k = N - 1; k > 0; k--) {
-                state[i] = (state[i] ^ ((state[i - 1] ^ (state[i - 1] >> 30)) * 1566083941u)) - (UInt32)i;
-                i++;
-                if(i >= N) {
-                    state[0] = state[N - 1];
-                    i = 1;
-                }
-            }
-
-            state[0] = 0x80000000;
-
         }
 
         /// <summary>32bit符号なし整数の乱数値の生成</summary>
-        public UInt32 Next() {
+        public uint Next() {
             return Generate();
         }
 
         /// <summary>32bit符号なし整数の乱数値配列の生成</summary>
-        public UInt32[] NextArray(int size) {
-            var array = new UInt32[size];
+        public uint[] NextArray(int size) {
+            var array = new uint[size];
 
-            for(int i = 0; i < array.Length; i++) {
+            for (int i = 0; i < array.Length; i++) {
                 array[i] = Generate();
             }
 
@@ -175,15 +178,15 @@ namespace ExRandom {
         }
 
         /// <summary>64bit符号なし整数の乱数値の生成</summary>
-        public UInt64 Next64() {
-            return ((UInt64)Generate()) << uint32_bits | (UInt64)Generate();
+        public ulong Next64() {
+            return ((ulong)Generate()) << uint32_bits | Generate();
         }
 
         /// <summary>52bit符号なし整数の乱数値の生成</summary>
-        public UInt64 Next52() {
-            UInt32 h = Generate() >> (uint64_bits - double_mantissa_bits), l = Generate();
+        public ulong Next52() {
+            uint h = Generate() >> (uint64_bits - double_mantissa_bits), l = Generate();
 
-            return ((UInt64)h << uint32_bits) | ((UInt64)l);
+            return ((ulong)h << uint32_bits) | l;
         }
 
         /// <summary>二値乱数の生成 確率thrで1を返す</summary>

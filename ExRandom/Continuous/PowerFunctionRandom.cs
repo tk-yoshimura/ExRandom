@@ -4,17 +4,19 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class PowerFunctionRandom : Random{
+    public class PowerFunctionRandom : Random {
         readonly MT19937 mt;
         readonly double inv_p, min, range;
 
         public PowerFunctionRandom(MT19937 mt, double p = 1, double min = 0, double max = 1) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(p > 0) || !(min < max)) {
-                throw new ArgumentException();
+            if (!(p > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(p));
+            }
+            if (!(min < max)) {
+                throw new ArgumentOutOfRangeException($"{min}<{max}");
             }
 
             this.mt = mt;

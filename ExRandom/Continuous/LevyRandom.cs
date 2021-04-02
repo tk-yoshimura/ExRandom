@@ -4,19 +4,18 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class LevyRandom : Random{
+    public class LevyRandom : Random {
         readonly MT19937 mt;
         readonly double c, mu;
 
         public LevyRandom(MT19937 mt, double c = 1, double mu = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
+            }            
+            if (!(mu > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(mu));
             }
 
-            if(!(mu > 0)) {
-                throw new ArgumentException();
-            }
-            
             this.mt = mt;
             this.c = c;
             this.mu = mu;

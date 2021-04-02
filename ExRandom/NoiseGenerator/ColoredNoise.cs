@@ -9,13 +9,15 @@ namespace ExRandom.NoiseGenerator {
 
         int pos = 0;
 
-        public ColoredNoise(MT19937 mt, double alpha, int precision = 6) : base(alpha){
-            if (!(alpha >= -2) || alpha > 2) {
-                throw new ArgumentException(nameof(alpha));
+        public ColoredNoise(MT19937 mt, double alpha, int precision = 6) : base(alpha) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
+            if (!(alpha >= -2) || alpha > 2) {
+                throw new ArgumentOutOfRangeException(nameof(alpha));
+            }
             if (precision < 4 || precision > 12) {
-                throw new ArgumentException(nameof(precision));
+                throw new ArgumentOutOfRangeException(nameof(precision));
             }
 
             this.size = 1 << precision;

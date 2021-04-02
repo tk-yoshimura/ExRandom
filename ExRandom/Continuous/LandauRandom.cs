@@ -4,17 +4,19 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class LandauRandom : Random{
+    public class LandauRandom : Random {
         readonly MT19937 mt;
         readonly double s, mu;
-        
-        public LandauRandom(MT19937 mt, double s = 1, double mu = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
-            }
 
-            if(!(s > 0) || Double.IsNaN(mu)) {
-                throw new ArgumentException();
+        public LandauRandom(MT19937 mt, double s = 1, double mu = 0) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
+            }
+            if (!(s > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(s));
+            }
+            if (double.IsNaN(mu)) {
+                throw new ArgumentOutOfRangeException(nameof(mu));
             }
 
             this.mt = mt;
@@ -32,7 +34,7 @@ namespace ExRandom.Continuous {
         static LandauRandom() {
             table_grad = new double[table.Length];
 
-            for(int i = 1; i < table_grad.Length - 1; i++) {
+            for (int i = 1; i < table_grad.Length - 1; i++) {
                 table_grad[i] = Grad(table[i - 1], table[i], table[i + 1]);
             }
 
@@ -42,7 +44,7 @@ namespace ExRandom.Continuous {
 
         static double Grad(double vm1, double v0, double vp1) {
             double vv = (vm1 - v0) * (v0 - vp1);
-            
+
             return (vv > 0) ? (2 * vv / (vp1 - vm1)) : 0;
         }
 
@@ -50,13 +52,13 @@ namespace ExRandom.Continuous {
             double w = u * table_size, v = w - Math.Floor(w);
             int pos = (int)Math.Floor(w);
 
-            if(pos < 0) {
+            if (pos < 0) {
                 double v0 = table[0], v1 = table[1];
                 double g = v0 - v1;
 
                 return v0 - w * g;
             }
-            else if(pos >= table_size) {
+            else if (pos >= table_size) {
                 double v0 = table[table_size], v1 = table[table_size - 1];
                 double g = v1 - v0;
 

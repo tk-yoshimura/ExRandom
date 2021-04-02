@@ -4,12 +4,12 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.MultiVariate {
-    public class SurfaceSphericalRandom : Random<double>{
+    public class SurfaceSphericalRandom : Random<double> {
         readonly MT19937 mt;
 
         public SurfaceSphericalRandom(MT19937 mt) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;

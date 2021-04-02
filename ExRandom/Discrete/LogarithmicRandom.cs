@@ -4,18 +4,20 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.Discrete {
-    public class LogarithmicRandom : Random{
+    public class LogarithmicRandom : Random {
         readonly MT19937 mt;
         readonly int max;
         readonly double p, f1;
 
         public LogarithmicRandom(MT19937 mt, double p = 0.5, int max = int.MaxValue) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(p > 0) || p >= 1 || max < 1) {
-                throw new ArgumentException();
+            if (!(p > 0) || p >= 1) {
+                throw new ArgumentOutOfRangeException(nameof(p));
+            }
+            if (max < 1) {
+                throw new ArgumentOutOfRangeException(nameof(max));
             }
 
             this.mt = mt;
@@ -28,9 +30,9 @@ namespace ExRandom.Discrete {
             int k = 1;
             double f = f1, r = mt.NextDouble_OpenInterval1();
 
-            for(;;) {
+            for (; ; ) {
                 r -= f;
-                if(r <= 0 || k >= max || f < double.Epsilon) {
+                if (r <= 0 || k >= max || f < double.Epsilon) {
                     return k;
                 }
 

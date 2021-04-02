@@ -4,18 +4,18 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class UShapeRandom : Random{
+    public class UShapeRandom : Random {
         readonly MT19937 mt;
         readonly double inv_p;
 
         public UShapeRandom(MT19937 mt, double p = 2) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
+            }
+            if (!(p >= 0)) {
+                throw new ArgumentOutOfRangeException(nameof(p));
             }
 
-            if(!(p >= 0)) {
-                throw new ArgumentException();
-            }
             this.mt = mt;
             this.inv_p = 1 / (p + 1);
         }

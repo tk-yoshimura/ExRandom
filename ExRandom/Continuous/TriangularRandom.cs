@@ -4,17 +4,16 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class TriangularRandom : Random{
+    public class TriangularRandom : Random {
         readonly MT19937 mt;
         readonly double min, mode, max, thr, s0, s1;
 
-        public TriangularRandom(MT19937 mt, double min = -1, double mode = 0, double max = 1){
-            if(mt == null) {
-                throw new ArgumentNullException();
+        public TriangularRandom(MT19937 mt, double min = -1, double mode = 0, double max = 1) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(min < mode) || !(mode < max)) {
-                throw new ArgumentException();
+            if (!(min < mode) || !(mode < max)) {
+                throw new ArgumentOutOfRangeException($"{min}<{mode}<{max}");
             }
 
             this.mt = mt;
@@ -24,30 +23,30 @@ namespace ExRandom.Continuous {
             this.thr = (mode - min) / (max - min);
             this.s0 = (max - min) * (mode - min);
             this.s1 = (max - min) * (max - mode);
-        } 
+        }
 
         public override double Next() {
             double r = mt.NextDouble();
 
-            if(r < thr) {
+            if (r < thr) {
                 return min + Math.Sqrt(r * s0);
             }
-            else { 
+            else {
                 return max - Math.Sqrt((1.0 - r) * s1);
             }
         }
     }
 
-    public class UnitTriangularRandom : Random{
+    public class UnitTriangularRandom : Random {
         readonly MT19937 mt;
 
-        public UnitTriangularRandom(MT19937 mt){
-            if(mt == null) {
-                throw new ArgumentNullException();
+        public UnitTriangularRandom(MT19937 mt) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;
-        } 
+        }
 
         public override double Next() {
             return mt.NextDouble() + mt.NextDouble() - 1;

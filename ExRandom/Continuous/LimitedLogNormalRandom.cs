@@ -9,12 +9,12 @@ namespace ExRandom.Continuous {
         readonly LogNormalRandom lnd;
         readonly double inv_sq_limit;
 
-        public LimitedLogNormalRandom(MT19937 mt, double s = 1, double m = 0, double limit = 10){
-            if(mt == null) {
-                throw new ArgumentNullException();
+        public LimitedLogNormalRandom(MT19937 mt, double s = 1, double m = 0, double limit = 10) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-            if(!(limit > 0)) {
-                throw new ArgumentException();
+            if (!(limit > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(limit));
             }
 
             this.mt = mt;
@@ -27,7 +27,7 @@ namespace ExRandom.Continuous {
 
             do {
                 r = lnd.Next();
-            } while(mt.NextBool(r * r * inv_sq_limit));
+            } while (mt.NextBool(r * r * inv_sq_limit));
 
             return r;
         }

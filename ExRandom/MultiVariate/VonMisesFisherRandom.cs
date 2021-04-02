@@ -4,28 +4,26 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.MultiVariate {
-    public class VonMisesFisherRandom : Random<double>{
+    public class VonMisesFisherRandom : Random<double> {
         readonly MT19937 mt;
         readonly double kappa, inv_kappa, exp_m2kappa;
         readonly double qri, qrj, qij, qxx, qyy, qzz;
 
         public VonMisesFisherRandom(MT19937 mt, Vector<double> mu, double kappa = 1) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(mu.Dim != 3) { 
-                throw new ArgumentException();
+            if (mu.Dim != 3) {
+                throw new ArgumentException(nameof(mu));
             }
-            
-            if(!(kappa >= 0)) {
-                throw new ArgumentException();
+            if (!(kappa >= 0)) {
+                throw new ArgumentOutOfRangeException(nameof(kappa));
             }
 
             double inv_norm = 1 / Math.Sqrt(mu.X * mu.X + mu.Y * mu.Y + mu.Z * mu.Z);
 
-            if(double.IsNaN(inv_norm) || double.IsInfinity(inv_norm)) {
-                throw new ArgumentException();
+            if (double.IsNaN(inv_norm) || double.IsInfinity(inv_norm)) {
+                throw new ArgumentException(nameof(mu));
             }
 
             this.mt = mt;
@@ -44,7 +42,7 @@ namespace ExRandom.MultiVariate {
             s = Math.Sin(angle * 0.5);
             norm = Math.Sqrt(mx * mx + my * my);
 
-            if(norm > 0) {
+            if (norm > 0) {
                 qr = c;
                 qi = s * -my / norm;
                 qj = s * mx / norm;
@@ -56,7 +54,7 @@ namespace ExRandom.MultiVariate {
             }
 
             this.qri = qr * qi;
-            this.qij = qi * qj; 
+            this.qij = qi * qj;
             this.qrj = qr * qj;
             this.qxx = qr * qr + qi * qi - qj * qj;
             this.qyy = qr * qr - qi * qi + qj * qj;

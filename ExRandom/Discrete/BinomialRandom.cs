@@ -11,21 +11,20 @@ namespace ExRandom.Discrete {
         readonly int n;
 
         public BinomialRandom(MT19937 mt, double prob = 0.5, int n = 10) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
+            }
+            if (n <= 0) {
+                throw new ArgumentOutOfRangeException(nameof(n));
             }
 
-            if(n <= 0) {
-                throw new ArgumentException();
-            }
-            
             this.n = n;
 
-            if(n <= skips) {
+            if (n <= skips) {
                 double[] p = Binomial.Coef(n, prob);
                 this.rd = new RouletteRandom(mt, p);
             }
-            else { 
+            else {
                 double[] p = Binomial.Coef(n % skips, prob);
                 this.rd = new RouletteRandom(mt, p);
 
@@ -34,13 +33,13 @@ namespace ExRandom.Discrete {
             }
         }
 
-        public BinomialRandom(MT19937 mt, decimal prob, int n = 10) : this(mt, (double)prob, n){
-        }
+        public BinomialRandom(MT19937 mt, decimal prob, int n = 10)
+            : this(mt, (double)prob, n) { }
 
         public override int Next() {
             int i = n, cnt = 0;
 
-            while(i > skips) {
+            while (i > skips) {
                 cnt += rd_skip.Next();
                 i -= skips;
             }

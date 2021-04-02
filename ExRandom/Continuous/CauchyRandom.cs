@@ -4,13 +4,13 @@
 //Next : output distribution check - OK?...invalid mu
 
 namespace ExRandom.Continuous {
-    public class CauchyRandom : Random{
+    public class CauchyRandom : Random {
         readonly MT19937 mt;
         readonly double gamma, mu;
 
         public CauchyRandom(MT19937 mt, double gamma = 1, double mu = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;

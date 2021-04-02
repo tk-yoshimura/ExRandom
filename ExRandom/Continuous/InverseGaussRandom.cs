@@ -4,20 +4,22 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.Continuous {
-    public class InverseGaussRandom : Random{
+    public class InverseGaussRandom : Random {
         readonly MT19937 mt;
         readonly NormalRandom nd;
         readonly double mu, lambda;
 
         public InverseGaussRandom(MT19937 mt, double lambda = 1, double mu = 1) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
+            }
+            if (!(mu > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(mu));
+            }
+            if (!(lambda > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(lambda));
             }
 
-            if(!(mu > 0) || !(lambda > 0)) {
-                throw new ArgumentException();
-            }
-            
             this.mt = mt;
             this.nd = new NormalRandom(mt);
             this.mu = mu;

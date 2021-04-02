@@ -4,13 +4,13 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class ExponentialRandom : Random{
+    public class ExponentialRandom : Random {
         readonly MT19937 mt;
         readonly double lambda;
 
-        public ExponentialRandom(MT19937 mt, double lambda = 1) { 
-            if(mt == null) {
-                throw new ArgumentNullException();
+        public ExponentialRandom(MT19937 mt, double lambda = 1) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;

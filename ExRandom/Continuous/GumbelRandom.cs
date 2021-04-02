@@ -4,17 +4,16 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class GumbelRandom : Random{
+    public class GumbelRandom : Random {
         readonly MT19937 mt;
         readonly double beta, lambda;
 
         public GumbelRandom(MT19937 mt, double beta = 1, double lambda = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(beta > 0)) {
-                throw new ArgumentException();
+            if (!(beta > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(beta));
             }
 
             this.mt = mt;

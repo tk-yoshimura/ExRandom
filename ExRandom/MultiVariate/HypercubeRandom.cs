@@ -5,17 +5,16 @@ using System.Linq;
 //Next : output distribution OK
 
 namespace ExRandom.MultiVariate {
-    public class HypercubeRandom : Random<double>{
+    public class HypercubeRandom : Random<double> {
         readonly MT19937 mt;
         readonly int dim;
 
         public HypercubeRandom(MT19937 mt, int dim) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(dim < 1) {
-                throw new ArgumentException();
+            if (dim < 1) {
+                throw new ArgumentOutOfRangeException(nameof(dim));
             }
 
             this.mt = mt;

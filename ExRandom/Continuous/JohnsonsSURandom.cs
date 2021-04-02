@@ -4,17 +4,25 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class JohnsonsSURandom : Random{
+    public class JohnsonsSURandom : Random {
         readonly MT19937 mt;
         readonly double delta, lambda, gamma, eta;
 
         public JohnsonsSURandom(MT19937 mt, double delta = 1, double lambda = 1, double gamma = 0, double eta = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(delta > 0) || !(lambda > 0) || Double.IsNaN(gamma) || Double.IsNaN(eta)) {
-                throw new ArgumentException();
+            if (!(delta > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(delta));
+            }
+            if (!(lambda > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(lambda));
+            }
+            if (double.IsNaN(gamma)) {
+                throw new ArgumentOutOfRangeException(nameof(gamma));
+            }
+            if (double.IsNaN(eta)) {
+                throw new ArgumentOutOfRangeException(nameof(eta));
             }
 
             this.mt = mt;

@@ -4,17 +4,16 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class UniformRandom : Random{
+    public class UniformRandom : Random {
         readonly MT19937 mt;
         readonly double min, max, range;
 
-        public UniformRandom(MT19937 mt, double min = 0, double max = 1){
-            if(mt == null) {
-                throw new ArgumentNullException();
+        public UniformRandom(MT19937 mt, double min = 0, double max = 1) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(min < max)) {
-                throw new ArgumentException();
+            if (!(min < max)) {
+                throw new ArgumentOutOfRangeException($"{min}<{max}");
             }
 
             this.mt = mt;

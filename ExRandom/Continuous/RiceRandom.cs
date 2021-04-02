@@ -4,18 +4,20 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class RiceRandom : Random{
+    public class RiceRandom : Random {
         readonly MT19937 mt;
         readonly NormalRandom nd;
         readonly double nu, sigma;
 
         public RiceRandom(MT19937 mt, double nu = 0.5, double sigma = 1) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(nu >= 0) || !(sigma >= 0)) {
-                throw new ArgumentException();
+            if (!(nu >= 0)) {
+                throw new ArgumentOutOfRangeException(nameof(nu));
+            }
+            if (!(sigma >= 0)) {
+                throw new ArgumentOutOfRangeException(nameof(sigma));
             }
 
             this.mt = mt;

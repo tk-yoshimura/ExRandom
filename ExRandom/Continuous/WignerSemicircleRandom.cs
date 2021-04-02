@@ -10,12 +10,11 @@ namespace ExRandom.Continuous {
         readonly double s;
 
         public WignerSemicircleRandom(MT19937 mt, double s = 1) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(s > 0)) {
-                throw new ArgumentException();
+            if (!(s > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(s));
             }
 
             this.mt = mt;
@@ -29,7 +28,7 @@ namespace ExRandom.Continuous {
             do {
                 r = ud.Next();
                 thr = Math.Sqrt(1 - r * r);
-            } while(!mt.NextBool(thr));
+            } while (!mt.NextBool(thr));
 
             return r * s;
         }

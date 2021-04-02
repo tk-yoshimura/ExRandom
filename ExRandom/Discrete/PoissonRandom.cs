@@ -4,18 +4,20 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Discrete {
-    public class PoissonRandom : Random{
+    public class PoissonRandom : Random {
         readonly MT19937 mt;
         readonly double thr;
         readonly int max;
 
         public PoissonRandom(MT19937 mt, double lambda = 1, int max = int.MaxValue) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(lambda > 0) || (max < 1)) {
-                throw new ArgumentException();
+            if (!(lambda > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(lambda));
+            }
+            if (max < 1) {
+                throw new ArgumentOutOfRangeException(nameof(max));
             }
 
             this.mt = mt;
@@ -23,8 +25,8 @@ namespace ExRandom.Discrete {
             this.max = max;
         }
 
-        public PoissonRandom(MT19937 mt, decimal lambda, int max = int.MaxValue) : this(mt, (double)lambda, max){
-        }
+        public PoissonRandom(MT19937 mt, decimal lambda, int max = int.MaxValue)
+            : this(mt, (double)lambda, max) { }
 
         public override int Next() {
             int cnt = -1;
@@ -33,9 +35,9 @@ namespace ExRandom.Discrete {
                 cnt++;
                 m *= mt.NextDouble();
 
-                if(cnt >= max)
+                if (cnt >= max)
                     break;
-            } while(m >= thr);
+            } while (m >= thr);
 
             return cnt;
         }

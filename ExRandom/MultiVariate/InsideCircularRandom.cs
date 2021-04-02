@@ -4,12 +4,12 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.MultiVariate {
-    public class InsideCircularRandom : Random<double>{
+    public class InsideCircularRandom : Random<double> {
         readonly MT19937 mt;
 
         public InsideCircularRandom(MT19937 mt) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
             this.mt = mt;

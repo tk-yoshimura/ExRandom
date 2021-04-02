@@ -4,15 +4,15 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.Continuous {
-    public class LaplaceRandom : Random{
+    public class LaplaceRandom : Random {
         readonly MT19937 mt;
         readonly double b, mu;
 
-        public LaplaceRandom(MT19937 mt, double b = 1, double mu = 0) { 
-            if(mt == null) {
-                throw new ArgumentNullException();
+        public LaplaceRandom(MT19937 mt, double b = 1, double mu = 0) {
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
+            
             this.mt = mt;
             this.b = b;
             this.mu = mu;

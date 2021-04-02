@@ -4,7 +4,7 @@
 //Next : output distribution check - OK
 
 namespace ExRandom.Continuous {
-    public class QGaussianRandom : Random{
+    public class QGaussianRandom : Random {
         readonly MT19937 mt;
         readonly double q, q_prime, beta, mu, c;
         readonly Func<double, double> q_logarithm;
@@ -13,12 +13,14 @@ namespace ExRandom.Continuous {
         bool is_pear_generate = false;
 
         public QGaussianRandom(MT19937 mt, double q = 2, double beta = 1, double mu = 0) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
-
-            if(!(q < 3) || !(beta > 0)) {
-                throw new ArgumentException();
+            if (!(q < 3)) {
+                throw new ArgumentOutOfRangeException(nameof(q));
+            }
+            if (!(beta > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(beta));
             }
 
             this.mt = mt;
@@ -28,7 +30,7 @@ namespace ExRandom.Continuous {
             this.mu = mu;
             this.c = 1 / Math.Sqrt(beta * (3 - q));
 
-            if(q_prime == 1) {
+            if (q_prime == 1) {
                 this.q_logarithm = (x) => Math.Log(x);
             }
             else {
@@ -37,7 +39,7 @@ namespace ExRandom.Continuous {
         }
 
         private double Generate() {
-            if(is_pear_generate) {
+            if (is_pear_generate) {
                 is_pear_generate = false;
 
                 return r;

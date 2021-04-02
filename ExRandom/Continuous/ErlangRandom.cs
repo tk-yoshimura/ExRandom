@@ -1,18 +1,18 @@
-﻿using System;
-
-////debug
+﻿////debug
 //Next : output distribution check - yet
 
+using System;
+
 namespace ExRandom.Continuous {
-    public class ErlangRandom : Random{
+    public class ErlangRandom : Random {
         readonly GammaRandom gd;
 
         public ErlangRandom(MT19937 mt, uint k = 2, double theta = 1) {
-            if(mt == null) {
-                throw new ArgumentNullException();
+            if (mt is null) {
+                throw new ArgumentNullException(nameof(mt));
             }
 
-            this.gd = new GammaRandom(mt, kappa : k, theta : theta);
+            this.gd = new GammaRandom(mt, kappa: k, theta: theta);
         }
 
         public override double Next() {
