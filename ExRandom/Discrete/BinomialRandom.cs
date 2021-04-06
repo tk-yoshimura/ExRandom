@@ -33,9 +33,6 @@ namespace ExRandom.Discrete {
             }
         }
 
-        public BinomialRandom(MT19937 mt, decimal prob, int n = 10)
-            : this(mt, (double)prob, n) { }
-
         public override int Next() {
             int i = n, cnt = 0;
 

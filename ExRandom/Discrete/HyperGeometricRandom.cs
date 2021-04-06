@@ -14,7 +14,7 @@ namespace ExRandom.Discrete {
                 throw new ArgumentNullException(nameof(mt));
             }
             if (n <= 0 || k <= 0 || m <= 0 || n < k || n < m) {
-                throw new ArgumentOutOfRangeException($"{n}>={k}>={m}>0");
+                throw new ArgumentOutOfRangeException($"{nameof(n)}>={nameof(k)}>={nameof(m)}>0");
             }
 
             if (k < m) {

@@ -33,9 +33,6 @@ namespace ExRandom.Discrete {
             }
         }
 
-        public GeometricRandom(MT19937 mt, decimal prob, int max = int.MaxValue)
-            : this(mt, (double)prob, max) { }
-
         public override int Next() {
             int i = 1;
 

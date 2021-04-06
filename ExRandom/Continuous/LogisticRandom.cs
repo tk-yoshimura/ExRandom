@@ -12,7 +12,7 @@ namespace ExRandom.Continuous {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
             }
-            
+
             this.mt = mt;
             this.sigma = sigma;
             this.mu = mu;

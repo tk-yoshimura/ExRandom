@@ -25,9 +25,6 @@ namespace ExRandom.Discrete {
             this.max = max;
         }
 
-        public PoissonRandom(MT19937 mt, decimal lambda, int max = int.MaxValue)
-            : this(mt, (double)lambda, max) { }
-
         public override int Next() {
             int cnt = -1;
             double m = 1;

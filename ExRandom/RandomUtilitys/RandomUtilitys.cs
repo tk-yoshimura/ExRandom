@@ -140,7 +140,7 @@ namespace ExRandom {
                 throw new ArgumentOutOfRangeException($"{nameof(length0)},{nameof(length1)}");
             }
             if (array_size < true_num) {
-                throw new ArgumentOutOfRangeException($"{true_num}");
+                throw new ArgumentOutOfRangeException(nameof(true_num));
             }
 
             bool[] v = Fill(mt, array_size, true_num);
@@ -170,7 +170,7 @@ namespace ExRandom {
                 throw new ArgumentOutOfRangeException($"{nameof(length0)},{nameof(length1)},{nameof(length2)}");
             }
             if (array_size < true_num) {
-                throw new ArgumentOutOfRangeException($"{true_num}");
+                throw new ArgumentOutOfRangeException(nameof(true_num));
             }
 
             bool[] v = Fill(mt, array_size, true_num);
@@ -202,7 +202,7 @@ namespace ExRandom {
                 throw new ArgumentOutOfRangeException($"{nameof(length0)},{nameof(length1)},{nameof(length2)},{nameof(length3)}");
             }
             if (array_size < true_num) {
-                throw new ArgumentOutOfRangeException($"{true_num}");
+                throw new ArgumentOutOfRangeException(nameof(true_num));
             }
 
             bool[] v = Fill(mt, array_size, true_num);

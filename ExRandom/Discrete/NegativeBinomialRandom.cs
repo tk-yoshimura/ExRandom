@@ -4,7 +4,7 @@
 //Next : output distribution check - yet
 
 namespace ExRandom.Discrete {
-    class NegativeBinomialRandom : Random {
+    public class NegativeBinomialRandom : Random {
         readonly BernoulliRandom bd;
         readonly int r, max;
 
@@ -15,7 +15,7 @@ namespace ExRandom.Discrete {
             if (max < 1) {
                 throw new ArgumentOutOfRangeException(nameof(max));
             }
-            if (r < 1) {
+            if (r < 1 || r > max) {
                 throw new ArgumentOutOfRangeException(nameof(r));
             }
 
@@ -23,9 +23,6 @@ namespace ExRandom.Discrete {
             this.r = r;
             this.max = max;
         }
-
-        public NegativeBinomialRandom(MT19937 mt, decimal prob, int r = 4, int max = int.MaxValue)
-            : this(mt, (double)prob, r, max) { }
 
         public override int Next() {
             int cnt = 0;
@@ -39,7 +36,7 @@ namespace ExRandom.Discrete {
                 }
             }
 
-            return int.MaxValue;
+            return max - r;
         }
     }
 }

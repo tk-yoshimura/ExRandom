@@ -12,6 +12,9 @@ namespace ExRandom.Continuous {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
             }
+            if (!(lambda > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(lambda));
+            }
 
             this.mt = mt;
             this.lambda = lambda;
@@ -20,7 +23,7 @@ namespace ExRandom.Continuous {
         public override double Next() {
             double u = mt.NextDouble_OpenInterval0();
 
-            return -lambda * Math.Log(u);
+            return -Math.Log(u) / lambda;
         }
     }
 }

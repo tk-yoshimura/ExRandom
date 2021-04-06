@@ -13,7 +13,7 @@ namespace ExRandom.Continuous {
                 throw new ArgumentNullException(nameof(mt));
             }
             if (!(min < mode) || !(mode < max)) {
-                throw new ArgumentOutOfRangeException($"{min}<{mode}<{max}");
+                throw new ArgumentOutOfRangeException($"{nameof(min)}<{nameof(mode)}<{nameof(max)}");
             }
 
             this.mt = mt;

@@ -11,9 +11,9 @@ namespace ExRandom.Continuous {
         public LevyRandom(MT19937 mt, double c = 1, double mu = 0) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
-            }            
-            if (!(mu > 0)) {
-                throw new ArgumentOutOfRangeException(nameof(mu));
+            }
+            if (!(c > 0)) {
+                throw new ArgumentOutOfRangeException(nameof(c));
             }
 
             this.mt = mt;

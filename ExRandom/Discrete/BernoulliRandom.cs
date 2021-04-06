@@ -20,9 +20,6 @@ namespace ExRandom.Discrete {
             this.thr = prob;
         }
 
-        public BernoulliRandom(MT19937 mt, decimal thr)
-            : this(mt, (double)thr) { }
-
         public override int Next() {
             return NextBool() ? 1 : 0;
         }
