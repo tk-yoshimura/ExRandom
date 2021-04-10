@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - OK
-
 namespace ExRandom.Continuous {
     public class LogNormalRandom : Random {
         readonly NormalRandom nd;

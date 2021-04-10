@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - yet
-
 namespace ExRandom.MultiVariate {
     public class InsideCircularRandom : Random<double> {
         readonly MT19937 mt;

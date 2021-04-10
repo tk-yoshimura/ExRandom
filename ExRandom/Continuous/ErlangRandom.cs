@@ -1,7 +1,4 @@
-﻿////debug
-//Next : output distribution check - yet
-
-using System;
+﻿using System;
 
 namespace ExRandom.Continuous {
     public class ErlangRandom : Random {

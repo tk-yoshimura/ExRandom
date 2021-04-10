@@ -1,9 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - yet
-//Next : output average check - OK
-
 namespace ExRandom.Continuous {
     public class GammaRandom : Random {
         readonly MT19937 mt;

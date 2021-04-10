@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - OK
-
 namespace ExRandom.Discrete {
     public class BinomialRandom : Random {
         const int skips = 1024;

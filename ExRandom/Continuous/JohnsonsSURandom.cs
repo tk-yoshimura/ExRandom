@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - OK
-
 namespace ExRandom.Continuous {
     public class JohnsonsSURandom : Random {
         readonly MT19937 mt;
@@ -35,7 +32,7 @@ namespace ExRandom.Continuous {
         public override double Next() {
             double u = mt.NextDouble_OpenInterval01();
 
-            return lambda * Math.Sinh((ErrorFuntion.Probit(u) - gamma) / delta) + eta;
+            return lambda * Math.Sinh((ErrorFunction.Probit(u) - gamma) / delta) + eta;
         }
     }
 }

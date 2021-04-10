@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - yet
-
 namespace ExRandom.Continuous {
     public class NakagamiRandom : Random {
         readonly GammaRandom gr;

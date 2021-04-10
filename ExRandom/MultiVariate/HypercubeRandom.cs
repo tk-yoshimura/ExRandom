@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Linq;
 
-////debug
-//Next : output distribution OK
-
 namespace ExRandom.MultiVariate {
     public class HypercubeRandom : Random<double> {
         readonly MT19937 mt;

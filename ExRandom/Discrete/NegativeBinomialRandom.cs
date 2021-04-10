@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - yet
-
 namespace ExRandom.Discrete {
     public class NegativeBinomialRandom : Random {
         readonly BernoulliRandom bd;

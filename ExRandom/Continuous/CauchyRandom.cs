@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - OK?...invalid mu
-
 namespace ExRandom.Continuous {
     public class CauchyRandom : Random {
         readonly MT19937 mt;

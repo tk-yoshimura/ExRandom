@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - yet
-
 namespace ExRandom.Continuous {
     public class SnedecorsFRandom : Random {
         readonly ChiSquaredRandom cd1, cd2;

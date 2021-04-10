@@ -1,7 +1,5 @@
 ﻿using System;
-
-////debug
-//Next : output distribution check - OK
+using System.Diagnostics.CodeAnalysis;
 
 namespace ExRandom.MultiVariate {
     public class MultiVariateNormalRandom : Random<double> {
@@ -10,7 +8,7 @@ namespace ExRandom.MultiVariate {
         readonly double[] mu_vector;
         readonly double[][] lower_tri_matrix;
 
-        public MultiVariateNormalRandom(MT19937 mt, double[,] cov_matrix, double[] mu_vector = null) {
+        public MultiVariateNormalRandom(MT19937 mt, double[,] cov_matrix, [AllowNull] double[] mu_vector = null) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
             }

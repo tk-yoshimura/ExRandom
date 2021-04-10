@@ -1,9 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - OK
-//Next : output cross cov check - yet
-
 namespace ExRandom.MultiVariate {
     public class IntervalPartitionDiscreteRandom : Random<int> {
         readonly MT19937 mt;

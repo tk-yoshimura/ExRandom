@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-////debug
-//Shuffle : generate check - OK
-//Select : generate check - OK
-//RejectionNext : generate check - OK
-//Round : generate check - OK
-
 namespace ExRandom {
     public static class RandomUtilitys {
         public static void Shuffle<Type>(MT19937 mt, Type[] array) {

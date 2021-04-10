@@ -2,7 +2,7 @@
  Random number generation class group by various probability distributions
 
 ## Requirement
- .NET Core 3.1
+ .NET 5.0
 
 ## Supported Distributions
 - Continuous
@@ -17,6 +17,8 @@
    - Gumbel
    - HyperbolicSecant
    - InverseGauss
+   - InverseGamma
+   - InverseChiSquared
    - IrwinHall
    - JohnsonsSB
    - JohnsonsSU
@@ -24,7 +26,6 @@
    - Landau
    - Laplace
    - Levy
-   - LimitedLogNormal
    - LogNormal
    - Logistic
    - Nakagami

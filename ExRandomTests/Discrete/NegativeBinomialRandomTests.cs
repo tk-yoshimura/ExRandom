@@ -11,7 +11,7 @@ namespace ExRandom.Discrete.Tests {
             const int N = 1000000, INDEXES = 40;
 
             MT19937 mt = new();
-            Random rd = new NegativeBinomialRandom(mt, prob: 0.4, r: 4, max: 139);
+            Random rd = new NegativeBinomialRandom(mt, prob: 0.4, r: 4, max: 39);
 
             double[] cnt = Util.Histogram(N, INDEXES, rd);
 

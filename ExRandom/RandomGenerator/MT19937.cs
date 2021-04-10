@@ -1,10 +1,5 @@
 ﻿using System;
 
-////debug
-//Genenate : output matching test - OK
-//NextDouble : range check - OK
-//NextDouble_OpenInterval** : range check - OK
-
 // Mersenne Twister
 // http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html
 // http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/emt19937ar.html

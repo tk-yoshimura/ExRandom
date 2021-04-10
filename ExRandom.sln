@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExRandomTests", "ExRandomTests\ExRandomTests.csproj", "{A2AFC00D-2F47-4279-A296-6450C57C9900}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EDAF007A-FD66-49F1-989C-275BFCA94901} = {EDAF007A-FD66-49F1-989C-275BFCA94901}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExRandom", "ExRandom\ExRandom.csproj", "{EDAF007A-FD66-49F1-989C-275BFCA94901}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExRandom", "ExRandom\ExRandom.csproj", "{EDAF007A-FD66-49F1-989C-275BFCA94901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

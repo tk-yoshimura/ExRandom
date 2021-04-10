@@ -1,8 +1,5 @@
 ﻿using System;
 
-////debug
-//Next : output distribution check - yet
-
 namespace ExRandom.Discrete {
     public class LogarithmicRandom : Random {
         readonly MT19937 mt;
