@@ -24,6 +24,9 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(-4, BinaryLogit.Convert(0x0800000000000000ul), 1e-16);
             Assert.AreEqual(+4, BinaryLogit.Convert(0xF800000000000000ul), 1e-16);
 
+            Assert.AreEqual(-0.1926450779423958, BinaryLogit.Convert(0x7000000000000000ul), 1e-16);
+            Assert.AreEqual(+0.1926450779423958, BinaryLogit.Convert(0x9000000000000000ul), 1e-16);
+
             Assert.AreEqual(-6.813781191217037, BinaryLogit.Convert(0x0123456789ABCDEFul), 1e-16);
             Assert.AreEqual(+6.813781191217037, BinaryLogit.Convert(0xFEDCBA9876543210ul), 1e-16);
 
@@ -36,6 +39,9 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(+35, BinaryLogit.Convert(0xFFFFFFFFF0000000ul), 1e-16);
             Assert.AreEqual(-36, BinaryLogit.Convert(0x0000000008000000ul), 1e-16);
             Assert.AreEqual(+36, BinaryLogit.Convert(0xFFFFFFFFF8000000ul), 1e-16);
+
+            Assert.AreEqual(-32.1926450779423958, BinaryLogit.Convert(0x0000000070000000ul), 1e-16);
+            Assert.AreEqual(+32.1926450779423958, BinaryLogit.Convert(0xFFFFFFFF90000000ul), 1e-16);
 
             Assert.AreEqual(-38.81378123186138, BinaryLogit.Convert(0x0000000001234567ul), 1e-16);
             Assert.AreEqual(+38.81378123186138, BinaryLogit.Convert(0xFFFFFFFFFEDCBA99ul), 1e-16);
@@ -59,6 +65,9 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(-4, BinaryLogit.Convert(0x0800000000000000ul, 0ul), 1e-16);
             Assert.AreEqual(+4, BinaryLogit.Convert(0xF800000000000000ul, 0ul), 1e-16);
 
+            Assert.AreEqual(-0.1926450779423958, BinaryLogit.Convert(0x7000000000000000ul, 0ul), 1e-16);
+            Assert.AreEqual(+0.1926450779423958, BinaryLogit.Convert(0x9000000000000000ul, 0ul), 1e-16);
+
             Assert.AreEqual(-6.813781191217037, BinaryLogit.Convert(0x0123456789ABCDEFul, 0ul), 1e-16);
             Assert.AreEqual(+6.813781191217037, BinaryLogit.Convert(0xFEDCBA9876543210ul, 0ul), 1e-16);
 
@@ -71,6 +80,9 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(+35, BinaryLogit.Convert(0xFFFFFFFFF0000000ul, 0ul), 1e-16);
             Assert.AreEqual(-36, BinaryLogit.Convert(0x0000000008000000ul, 0ul), 1e-16);
             Assert.AreEqual(+36, BinaryLogit.Convert(0xFFFFFFFFF8000000ul, 0ul), 1e-16);
+
+            Assert.AreEqual(-32.1926450779423958, BinaryLogit.Convert(0x0000000070000000ul, 0ul), 1e-16);
+            Assert.AreEqual(+32.1926450779423958, BinaryLogit.Convert(0xFFFFFFFF90000000ul, 0ul), 1e-16);
 
             Assert.AreEqual(-38.813781191217037, BinaryLogit.Convert(0x0000000001234567ul, 0x89ABCDEF00000000ul), 1e-16);
             Assert.AreEqual(+38.813781191217037, BinaryLogit.Convert(0xFFFFFFFFFEDCBA98ul, 0x7654321000000000ul), 1e-16);
@@ -85,6 +97,9 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(-68, BinaryLogit.Convert(0ul, 0x0800000000000000ul), 1e-16);
             Assert.AreEqual(+68, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xF800000000000000ul), 1e-16);
 
+            Assert.AreEqual(-64.1926450779423958, BinaryLogit.Convert(0ul, 0x7000000000000000ul), 1e-16);
+            Assert.AreEqual(+64.1926450779423958, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0x9000000000000000ul), 1e-16);
+
             Assert.AreEqual(-70.813781191217037, BinaryLogit.Convert(0ul, 0x0123456789ABCDEFul), 1e-16);
             Assert.AreEqual(+70.813781191217037, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFEDCBA9876543210ul), 1e-16);
 
@@ -97,6 +112,10 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(+99, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFFFFFFFFF0000000ul), 1e-16);
             Assert.AreEqual(-100, BinaryLogit.Convert(0ul, 0x0000000008000000ul), 1e-16);
             Assert.AreEqual(+100, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFFFFFFFFF8000000ul), 1e-16);
+
+            Assert.AreEqual(-96.1926450779423958, BinaryLogit.Convert(0ul, 0x0000000070000000ul), 1e-16);
+            Assert.AreEqual(+96.1926450779423958, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFFFFFFFF90000000ul), 1e-16);
+
 
             Assert.AreEqual(-102.81378123186137, BinaryLogit.Convert(0ul, 0x0000000001234567ul), 1e-16);
             Assert.AreEqual(+102.81378123186137, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFFFFFFFFFEDCBA99ul), 1e-16);
