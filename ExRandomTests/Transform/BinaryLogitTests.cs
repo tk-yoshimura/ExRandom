@@ -116,7 +116,6 @@ namespace ExRandom.Transform.Tests {
             Assert.AreEqual(-96.1926450779423958, BinaryLogit.Convert(0ul, 0x0000000070000000ul), 1e-16);
             Assert.AreEqual(+96.1926450779423958, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFFFFFFFF90000000ul), 1e-16);
 
-
             Assert.AreEqual(-102.81378123186137, BinaryLogit.Convert(0ul, 0x0000000001234567ul), 1e-16);
             Assert.AreEqual(+102.81378123186137, BinaryLogit.Convert(0xFFFFFFFFFFFFFFFFul, 0xFFFFFFFFFEDCBA99ul), 1e-16);
 
