@@ -50,5 +50,8 @@
 
 # Other
 /**/test_outputs
+nuget.exe
+/**/*.nuspec
+/**/*.nupkg
 
 # Safelist
