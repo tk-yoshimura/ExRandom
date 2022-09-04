@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ExRandomTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PNGGraphPlot;
 using System.Drawing;
-using ExRandomTests;
 
 namespace ExRandom.Discrete.Tests {
     [TestClass()]

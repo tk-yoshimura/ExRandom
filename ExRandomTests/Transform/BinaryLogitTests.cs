@@ -5,7 +5,7 @@ namespace ExRandom.Transform.Tests {
     public class BinaryLogitTests {
         [TestMethod()]
         public void ConvertDoubleTest() {
-            Assert.AreEqual(0,  BinaryLogit.Convert(0.5));
+            Assert.AreEqual(0, BinaryLogit.Convert(0.5));
             Assert.AreEqual(-1, BinaryLogit.Convert(0.25), 1e-16);
             Assert.AreEqual(+1, BinaryLogit.Convert(0.75), 1e-16);
             Assert.AreEqual(-2, BinaryLogit.Convert(0.125), 1e-16);
@@ -14,7 +14,7 @@ namespace ExRandom.Transform.Tests {
 
         [TestMethod()]
         public void ConvertUInt64Test() {
-            Assert.AreEqual(0,  BinaryLogit.Convert(0x8000000000000000ul));
+            Assert.AreEqual(0, BinaryLogit.Convert(0x8000000000000000ul));
             Assert.AreEqual(-1, BinaryLogit.Convert(0x4000000000000000ul), 1e-16);
             Assert.AreEqual(+1, BinaryLogit.Convert(0xC000000000000000ul), 1e-16);
             Assert.AreEqual(-2, BinaryLogit.Convert(0x2000000000000000ul), 1e-16);
@@ -55,7 +55,7 @@ namespace ExRandom.Transform.Tests {
 
         [TestMethod()]
         public void ConvertUInt128Test() {
-            Assert.AreEqual(0,  BinaryLogit.Convert(0x8000000000000000ul, 0ul));
+            Assert.AreEqual(0, BinaryLogit.Convert(0x8000000000000000ul, 0ul));
             Assert.AreEqual(-1, BinaryLogit.Convert(0x4000000000000000ul, 0ul), 1e-16);
             Assert.AreEqual(+1, BinaryLogit.Convert(0xC000000000000000ul, 0ul), 1e-16);
             Assert.AreEqual(-2, BinaryLogit.Convert(0x2000000000000000ul, 0ul), 1e-16);

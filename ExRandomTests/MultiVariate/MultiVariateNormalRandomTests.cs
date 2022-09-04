@@ -1,13 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExRandom.MultiVariate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExRandomTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PNGGraphPlot;
 using System.Drawing;
-using ExRandomTests;
 
 namespace ExRandom.MultiVariate.Tests {
     [TestClass()]
@@ -29,12 +23,12 @@ namespace ExRandom.MultiVariate.Tests {
             graph.DrawXScale(Color.Black, minX, maxX, 2m);
             graph.DrawYScale(Color.Black, minY, maxY, 2m);
 
-            for(int i = 0; i <= times; i++) {
+            for (int i = 0; i <= times; i++) {
                 var v = rd.Next();
 
                 graph.DrawPoint(Color.Black, v.X, v.Y, 1.2);
             }
-            
+
             graph.Save(Workspace.OutDir + "plot_multi_normal_xy.png");
         }
     }

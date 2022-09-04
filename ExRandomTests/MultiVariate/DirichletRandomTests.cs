@@ -1,12 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExRandom.MultiVariate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExRandomTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PNGGraphPlot;
-using ExRandomTests;
 using System.Drawing;
 
 namespace ExRandom.MultiVariate.Tests {
@@ -27,12 +21,12 @@ namespace ExRandom.MultiVariate.Tests {
             graph.DrawXScale(Color.Black, minX, maxX, 0.2m);
             graph.DrawYScale(Color.Black, minY, maxY, 0.2m);
 
-            for(int i = 0; i <= times; i++) {
+            for (int i = 0; i <= times; i++) {
                 var v = rd.Next();
 
                 graph.DrawPoint(Color.Black, v.X, v.Y, 1.2);
             }
-            
+
             graph.Save(Workspace.OutDir + "plot_multi_dirichlet_xy.png");
         }
     }
