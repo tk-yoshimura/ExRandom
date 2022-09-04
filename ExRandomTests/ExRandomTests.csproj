@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
     <IsPackable>false</IsPackable>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="ExRandom">
-      <HintPath>..\ExRandom\bin\Release\net5.0\ExRandom.dll</HintPath>
+      <HintPath>..\ExRandom\bin\Release\net6.0\ExRandom.dll</HintPath>
     </Reference>
     <Reference Include="PNGGraphPlot">
       <HintPath>..\import\PNGGraphPlot.dll</HintPath>

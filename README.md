@@ -2,7 +2,7 @@
  Random number generation class group by various probability distributions
 
 ## Requirement
- .NET 5.0
+ .NET 6.0
 
 ## Supported Distributions
 - Continuous
@@ -72,7 +72,7 @@
    - alpha  [-2, 2] colors of noise  e.g.Violet, Blue, White, Pink, Brown
 
 ## Install
-[Download DLL](https://github.com/tk-yoshimura/ExRandom/releases)
+[Download DLL](https://github.com/tk-yoshimura/ExRandom/releases)  
 [Download Nuget package](https://www.nuget.org/packages/tyoshimura.exrandom/)
 
 - To install, just import the DLL.
