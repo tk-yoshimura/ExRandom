@@ -24,25 +24,15 @@ namespace ExRandom.MultiVariate {
         }
 
         public override string ToString() {
-            string str = string.Empty;
-
             if (Dim > 0) {
-                str += vals[0].ToString();
-
-                for (int i = 1; i < Dim; i++) {
-                    str += string.Format(",{0}", vals[i].ToString());
-                }
+                return string.Join(',', vals.Select((v) => v.ToString()));
             }
             else {
                 return "null";
             }
-
-            return str;
         }
 
         public string ToString(string format, IFormatProvider provider) {
-            string str = string.Empty;
-
             if (Dim > 0) {
                 return string.Join(',', vals.Select((v) => v.ToString(format, provider)));
             }
@@ -52,17 +42,15 @@ namespace ExRandom.MultiVariate {
         }
 
         public static bool operator ==(Vector<T> v1, Vector<T> v2) {
-            return Array.Equals(v1.vals, v2.vals);
+            return Equals(v1.vals, v2.vals);
         }
 
         public static bool operator !=(Vector<T> v1, Vector<T> v2) {
-            return !Array.Equals(v1.vals, v2.vals);
+            return !Equals(v1.vals, v2.vals);
         }
 
         public override bool Equals(object obj) {
-            var other = obj as Vector<T>;
-
-            return other != null && Array.Equals(vals, other.vals);
+            return obj is Vector<T> vec && Equals(vals, vec.vals);
         }
 
         public override int GetHashCode() {
