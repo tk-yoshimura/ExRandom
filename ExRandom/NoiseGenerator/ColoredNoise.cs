@@ -8,6 +8,8 @@ namespace ExRandom.NoiseGenerator {
         private readonly Continuous.NormalRandom nd;
         private int pos = 0;
 
+        public MT19937 Mt { get; }
+
         public ColoredNoise(MT19937 mt, double alpha, int precision = 6) : base(alpha) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
@@ -35,6 +37,7 @@ namespace ExRandom.NoiseGenerator {
             }
 
             Generate(this.size * 8);
+            this.Mt = mt;
         }
 
         public override double Generate() {
