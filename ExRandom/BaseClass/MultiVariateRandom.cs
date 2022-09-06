@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ExRandom.MultiVariate {
     public class Vector<T> : IFormattable where T : struct, IComparable, IFormattable {
@@ -43,17 +44,11 @@ namespace ExRandom.MultiVariate {
             string str = string.Empty;
 
             if (Dim > 0) {
-                str += vals[0].ToString(format, provider);
-
-                for (int i = 1; i < Dim; i++) {
-                    str += string.Format(",{0}", vals[i].ToString(format, provider));
-                }
+                return string.Join(',', vals.Select((v) => v.ToString(format, provider)));
             }
             else {
                 return "null";
             }
-
-            return str;
         }
 
         public static bool operator ==(Vector<T> v1, Vector<T> v2) {
