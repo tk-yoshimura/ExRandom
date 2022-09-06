@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class NakagamiRandom : Random {
-        readonly GammaRandom gr;
+        private readonly GammaRandom gr;
 
         public MT19937 Mt { get; }
         public double M { get; }

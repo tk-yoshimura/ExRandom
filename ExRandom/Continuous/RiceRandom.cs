@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class RiceRandom : Random {
-        readonly NormalRandom nd;
+        private readonly NormalRandom nd;
 
         public MT19937 Mt { get; }
         public double Nu { get; }

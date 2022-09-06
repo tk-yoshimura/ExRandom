@@ -2,12 +2,11 @@
 
 namespace ExRandom.NoiseGenerator {
     public class ColoredNoise : Noise {
-        readonly int size;
-        readonly double decay;
-        readonly double[] coef, state;
-        readonly Continuous.NormalRandom nd;
-
-        int pos = 0;
+        private readonly int size;
+        private readonly double decay;
+        private readonly double[] coef, state;
+        private readonly Continuous.NormalRandom nd;
+        private int pos = 0;
 
         public ColoredNoise(MT19937 mt, double alpha, int precision = 6) : base(alpha) {
             if (mt is null) {

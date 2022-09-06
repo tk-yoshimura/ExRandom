@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class PowerFunctionRandom : Random {
-        readonly double inv_p, range;
+        private readonly double inv_p, range;
 
         public MT19937 Mt { get; }
         public double P { get; }

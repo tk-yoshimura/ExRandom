@@ -2,7 +2,8 @@
 
 namespace ExRandom.Continuous {
     public class ErlangRandom : Random {
-        readonly GammaRandom gd;
+        private readonly GammaRandom gd;
+
         public MT19937 Mt { get; }
         public uint K { get; }
         public double Theta { get; }

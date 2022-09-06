@@ -2,8 +2,8 @@
 
 namespace ExRandom.Continuous {
     public class QExponentialRandom : Random {
-        readonly double q_prime, c;
-        readonly Func<double, double> q_logarithm;
+        private readonly double q_prime, c;
+        private readonly Func<double, double> q_logarithm;
 
         public MT19937 Mt { get; }
         public double Q { get; }

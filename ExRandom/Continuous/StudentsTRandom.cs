@@ -2,9 +2,9 @@
 
 namespace ExRandom.Continuous {
     public class StudentsTRandom : Random {
-        readonly NormalRandom nd;
-        readonly ChiSquaredRandom cd;
-        readonly double inv_nu;
+        private readonly NormalRandom nd;
+        private readonly ChiSquaredRandom cd;
+        private readonly double inv_nu;
 
         public MT19937 Mt { get; }
         public uint Nu { get; }

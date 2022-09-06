@@ -40,13 +40,13 @@ namespace ExRandom.Continuous {
             table_grad[table_size] = table_grad[table_size - 1];
         }
 
-        static double Grad(double vm1, double v0, double vp1) {
+        private static double Grad(double vm1, double v0, double vp1) {
             double vv = (vm1 - v0) * (v0 - vp1);
 
             return (vv > 0) ? (2 * vv / (vp1 - vm1)) : 0;
         }
 
-        static double ApproxTable(double u) {
+        private static double ApproxTable(double u) {
             double w = u * table_size, v = w - Math.Floor(w);
             int pos = (int)Math.Floor(w);
 
@@ -75,16 +75,15 @@ namespace ExRandom.Continuous {
             }
         }
 
-        static double InverseCDF(double x) {
+        private static double InverseCDF(double x) {
             double u = (Math.Log(x / (1 - x)) + 14) / 28;
 
             return Math.Exp(ApproxTable(u)) - 8;
         }
 
-        const int table_size = 1000;
-
-        static readonly double[] table_grad;
-        static readonly double[] table = {
+        private const int table_size = 1000;
+        private static readonly double[] table_grad;
+        private static readonly double[] table = {
             1.510933788457820e+00,1.511437546574627e+00,1.511942156394705e+00,1.512447620873696e+00,1.512953943072885e+00,
             1.513461126158531e+00,1.513969173401236e+00,1.514478088175363e+00,1.514987873958505e+00,1.515498534330988e+00,
             1.516010072975432e+00,1.516522493676347e+00,1.517035800319773e+00,1.517549996892973e+00,1.518065087484161e+00,

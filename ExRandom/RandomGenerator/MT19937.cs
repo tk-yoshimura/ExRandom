@@ -46,12 +46,11 @@
 namespace ExRandom {
     public class MT19937 {
         /* Floating-point number processing of .NET Core 3.0+ conforms to IEEE 754-2008. */
-        const int double_mantissa_bits = 52, uint32_bits = 32, uint64_bits = uint32_bits * 2;
-        const ulong mantissa_full = ((ulong)(~0u >> (uint64_bits - double_mantissa_bits)) << uint32_bits) | ~0u;
-        static readonly double one = 1 / Math.ScaleB(mantissa_full, -double_mantissa_bits);
-
-        uint pos;
-        readonly uint[] state = new uint[624];
+        private const int double_mantissa_bits = 52, uint32_bits = 32, uint64_bits = uint32_bits * 2;
+        private const ulong mantissa_full = ((ulong)(~0u >> (uint64_bits - double_mantissa_bits)) << uint32_bits) | ~0u;
+        private static readonly double one = 1 / Math.ScaleB(mantissa_full, -double_mantissa_bits);
+        private uint pos;
+        private readonly uint[] state = new uint[624];
 
         /// <summary>コンストラクタ 時間による乱数種設定</summary>
         public MT19937() {

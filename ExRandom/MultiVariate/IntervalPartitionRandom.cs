@@ -55,7 +55,7 @@ namespace ExRandom.MultiVariate {
     }
 
     public class IntervalPartitionContinuousRandom : Random<double> {
-        readonly double[] array;
+        private readonly double[] array;
 
         public MT19937 Mt { get; }
         public int Dim { get; }

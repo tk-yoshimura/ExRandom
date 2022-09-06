@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class VonMisesRandom : Random {
-        readonly double s;
+        private readonly double s;
 
         public MT19937 Mt { get; }
         public double Kappa { get; }

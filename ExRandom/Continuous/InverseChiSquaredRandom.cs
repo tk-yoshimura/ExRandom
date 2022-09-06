@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class InverseChiSquaredRandom : Random {
-        readonly ChiSquaredRandom cr;
+        private readonly ChiSquaredRandom cr;
 
         public MT19937 Mt { get; }
         public uint K { get; }

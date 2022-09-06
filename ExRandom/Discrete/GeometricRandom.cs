@@ -2,8 +2,8 @@
 
 namespace ExRandom.Discrete {
     public class GeometricRandom : Random {
-        const int dist_size = 16;
-        readonly double[] dist;
+        private const int dist_size = 16;
+        private readonly double[] dist;
 
         public MT19937 Mt { get; }
         public double Prob { get; }

@@ -2,9 +2,8 @@
 
 namespace ExRandom.Discrete {
     public class BinomialRandom : Random {
-        const int skips = 1024;
-
-        readonly RouletteRandom rd, rd_skip;
+        private const int skips = 1024;
+        private readonly RouletteRandom rd, rd_skip;
 
         public MT19937 Mt { get; }
         public double Prob { get; }

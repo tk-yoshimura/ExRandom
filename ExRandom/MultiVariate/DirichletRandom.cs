@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace ExRandom.MultiVariate {
     public class DirichletRandom : Random<double> {
-        readonly int dim;
-        readonly Continuous.GammaRandom[] grs;
+        private readonly int dim;
+        private readonly Continuous.GammaRandom[] grs;
 
         public MT19937 Mt { get; }
         public IReadOnlyList<double> Alphas { get; }

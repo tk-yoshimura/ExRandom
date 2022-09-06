@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class UShapeRandom : Random {
-        readonly double inv_p;
+        private readonly double inv_p;
 
         public MT19937 Mt { get; }
         public double P { get; }

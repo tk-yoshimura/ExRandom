@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace ExRandom.Discrete {
     public class RouletteRandom : Random {
-        readonly int[] indexs;
-        readonly double[] probs;
+        private readonly int[] indexs;
+        private readonly double[] probs;
 
         public MT19937 Mt { get; }
         public IReadOnlyList<double> Probs => probs;

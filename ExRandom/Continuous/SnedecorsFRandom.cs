@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class SnedecorsFRandom : Random {
-        readonly ChiSquaredRandom cd1, cd2;
+        private readonly ChiSquaredRandom cd1, cd2;
 
         public MT19937 Mt { get; }
         public double D1 { get; }

@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class UniformRandom : Random {
-        readonly double range;
+        private readonly double range;
 
         public MT19937 Mt { get; }
         public double Min { get; }

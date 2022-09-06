@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class FishersZRandom : Random {
-        readonly SnedecorsFRandom sd;
+        private readonly SnedecorsFRandom sd;
 
         public MT19937 Mt { get; }
         public uint D1 { get; }

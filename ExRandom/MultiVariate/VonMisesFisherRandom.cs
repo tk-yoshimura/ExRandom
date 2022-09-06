@@ -2,8 +2,8 @@
 
 namespace ExRandom.MultiVariate {
     public class VonMisesFisherRandom : Random<double> {
-        readonly double inv_kappa, exp_m2kappa;
-        readonly double qri, qrj, qij, qxx, qyy, qzz;
+        private readonly double inv_kappa, exp_m2kappa;
+        private readonly double qri, qrj, qij, qxx, qyy, qzz;
 
         public MT19937 Mt { get; }
         public Vector<double> Mu { get; }

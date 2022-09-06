@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class ParetoRandom : Random {
-        readonly double inv_alpha;
+        private readonly double inv_alpha;
 
         public MT19937 Mt { get; }
         public double Alpha { get; }

@@ -2,8 +2,8 @@
 
 namespace ExRandom.Discrete {
     public class HyperGeometricRandom : Random {
-        readonly int[] indexs;
-        readonly double[] probs;
+        private readonly int[] indexs;
+        private readonly double[] probs;
 
         public MT19937 Mt { get; }
         public int N { get; }

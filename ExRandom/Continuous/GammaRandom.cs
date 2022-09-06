@@ -2,8 +2,8 @@
 
 namespace ExRandom.Continuous {
     public class GammaRandom : Random {
-        readonly NormalRandom nd;
-        readonly double c1, c2, c3;
+        private readonly NormalRandom nd;
+        private readonly double c1, c2, c3;
 
         public MT19937 Mt { get; }
         public double Kappa { get; }

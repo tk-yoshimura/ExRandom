@@ -2,7 +2,7 @@
 
 namespace ExRandom.Discrete {
     public class PoissonRandom : Random {
-        readonly double thr;
+        private readonly double thr;
 
         public MT19937 Mt { get; }
         public int Max { get; }

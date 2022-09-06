@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class WignerSemicircleRandom : Random {
-        readonly UniformRandom ud;
+        private readonly UniformRandom ud;
 
         public MT19937 Mt { get; }
         public double S { get; }

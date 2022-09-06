@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class TriangularRandom : Random {
-        readonly double thr, s0, s1;
+        private readonly double thr, s0, s1;
 
         public MT19937 Mt { get; }
         public double Min { get; }
@@ -39,7 +39,7 @@ namespace ExRandom.Continuous {
     }
 
     public class UnitTriangularRandom : Random {
-        readonly MT19937 mt;
+        private readonly MT19937 mt;
 
         public UnitTriangularRandom(MT19937 mt) {
             if (mt is null) {

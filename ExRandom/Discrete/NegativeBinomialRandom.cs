@@ -2,7 +2,7 @@
 
 namespace ExRandom.Discrete {
     public class NegativeBinomialRandom : Random {
-        readonly BernoulliRandom bd;
+        private readonly BernoulliRandom bd;
 
         public MT19937 Mt { get; }
         public double Prob { get; }

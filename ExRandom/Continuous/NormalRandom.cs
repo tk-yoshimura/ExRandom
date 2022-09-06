@@ -2,8 +2,8 @@
 
 namespace ExRandom.Continuous {
     public class NormalRandom : Random {
-        double r;
-        bool is_pear_generate = false;
+        private double r;
+        private bool is_pear_generate = false;
 
         public MT19937 Mt { get; }
         public double Sigma { get; }

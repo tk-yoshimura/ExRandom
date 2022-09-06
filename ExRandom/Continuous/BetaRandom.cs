@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class BetaRandom : Random {
-        readonly GammaRandom g1, g2;
+        private readonly GammaRandom g1, g2;
 
         public MT19937 Mt { get; }
         public double Alpha { get; }

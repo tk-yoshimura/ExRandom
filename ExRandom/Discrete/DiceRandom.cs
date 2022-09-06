@@ -2,7 +2,7 @@
 
 namespace ExRandom.Discrete {
     public class DiceRandom : Random {
-        readonly uint cut;
+        private readonly uint cut;
 
         public MT19937 Mt { get; }
         public uint Sides { get; }

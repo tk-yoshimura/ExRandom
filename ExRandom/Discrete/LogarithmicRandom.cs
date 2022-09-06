@@ -2,7 +2,7 @@
 
 namespace ExRandom.Discrete {
     public class LogarithmicRandom : Random {
-        readonly double f1;
+        private readonly double f1;
 
         public MT19937 Mt { get; }
         public double P { get; }

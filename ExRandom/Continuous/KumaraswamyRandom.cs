@@ -2,7 +2,7 @@
 
 namespace ExRandom.Continuous {
     public class KumaraswamyRandom : Random {
-        readonly double inv_a, inv_b;
+        private readonly double inv_a, inv_b;
 
         public MT19937 Mt { get; }
         public double A { get; }

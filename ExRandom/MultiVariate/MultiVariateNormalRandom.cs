@@ -3,10 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ExRandom.MultiVariate {
     public class MultiVariateNormalRandom : Random<double> {
-        readonly Continuous.NormalRandom nd;
-        readonly int dim;
-        readonly double[] mu_vector;
-        readonly double[][] lower_tri_matrix;
+        private readonly Continuous.NormalRandom nd;
+        private readonly int dim;
+        private readonly double[] mu_vector;
+        private readonly double[][] lower_tri_matrix;
 
         public MT19937 Mt { get; }
 

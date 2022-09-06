@@ -2,11 +2,10 @@
 
 namespace ExRandom.Continuous {
     public class QGaussianRandom : Random {
-        readonly double q_prime, c;
-        readonly Func<double, double> q_logarithm;
-
-        double r;
-        bool is_pear_generate = false;
+        private readonly double q_prime, c;
+        private readonly Func<double, double> q_logarithm;
+        private double r;
+        private bool is_pear_generate = false;
 
         public MT19937 Mt { get; }
         public double Q { get; }
