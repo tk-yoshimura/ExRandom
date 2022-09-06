@@ -19,9 +19,7 @@ namespace ExRandom {
 
                 j = rd.Next();
 
-                Type swap = array[j];
-                array[j] = array[i];
-                array[i] = swap;
+                (array[i], array[j]) = (array[j], array[i]);
             }
         }
 
@@ -86,7 +84,7 @@ namespace ExRandom {
             int index, cnt;
             bool[] array;
 
-            Discrete.DiceRandom dr = new Discrete.DiceRandom(mt, length);
+            Discrete.DiceRandom dr = new(mt, length);
 
             if (true_num < length / 2) {
                 array = new bool[length];

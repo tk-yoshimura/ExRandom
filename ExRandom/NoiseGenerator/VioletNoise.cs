@@ -3,6 +3,8 @@
         private readonly Continuous.NormalRandom nd;
         private double state = 0;
 
+        public MT19937 Mt => nd.Mt;
+
         public VioletNoise(MT19937 mt) : base(-2) {
             this.nd = new Continuous.NormalRandom(mt);
 
