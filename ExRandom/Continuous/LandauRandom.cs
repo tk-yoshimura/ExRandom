@@ -2,8 +2,9 @@
 
 namespace ExRandom.Continuous {
     public class LandauRandom : Random {
-        readonly MT19937 mt;
-        readonly double s, mu;
+        public MT19937 Mt { get; }
+        public double S { get; }
+        public double Mu { get; }
 
         public LandauRandom(MT19937 mt, double s = 1, double mu = 0) {
             if (mt is null) {
@@ -16,16 +17,16 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(mu));
             }
 
-            this.mt = mt;
-            this.s = s;
-            this.mu = mu;
+            this.Mt = mt;
+            this.S = s;
+            this.Mu = mu;
         }
 
         public override double Next() {
-            double r = mt.NextDouble_OpenInterval01();
+            double r = Mt.NextDouble_OpenInterval01();
             double x = InverseCDF(r);
 
-            return x * s + mu;
+            return x * S + Mu;
         }
 
         static LandauRandom() {

@@ -2,9 +2,12 @@
 
 namespace ExRandom.MultiVariate {
     public class VonMisesFisherRandom : Random<double> {
-        readonly MT19937 mt;
-        readonly double kappa, inv_kappa, exp_m2kappa;
+        readonly double inv_kappa, exp_m2kappa;
         readonly double qri, qrj, qij, qxx, qyy, qzz;
+
+        public MT19937 Mt { get; }
+        public Vector<double> Mu { get; }
+        public double Kappa { get; }
 
         public VonMisesFisherRandom(MT19937 mt, Vector<double> mu, double kappa = 1) {
             if (mt is null) {
@@ -23,8 +26,9 @@ namespace ExRandom.MultiVariate {
                 throw new ArgumentException(nameof(mu));
             }
 
-            this.mt = mt;
-            this.kappa = kappa;
+            this.Mt = mt;
+            this.Mu = mu;
+            this.Kappa = kappa;
             this.inv_kappa = 1 / kappa;
             this.exp_m2kappa = Math.Exp(-2 * kappa);
 
@@ -61,10 +65,10 @@ namespace ExRandom.MultiVariate {
         public override Vector<double> Next() {
             double r, w, s, theta, x, y, z;
 
-            r = mt.NextDouble();
-            w = (kappa > 0) ? (1 + Math.Log(r + (1 - r) * exp_m2kappa) * inv_kappa) : (2 * r - 1);
+            r = Mt.NextDouble();
+            w = (Kappa > 0) ? (1 + Math.Log(r + (1 - r) * exp_m2kappa) * inv_kappa) : (2 * r - 1);
             s = Math.Sqrt(1 - w * w);
-            theta = 2 * Math.PI * mt.NextDouble_OpenInterval1();
+            theta = 2 * Math.PI * Mt.NextDouble_OpenInterval1();
 
             x = s * Math.Cos(theta);
             y = s * Math.Sin(theta);

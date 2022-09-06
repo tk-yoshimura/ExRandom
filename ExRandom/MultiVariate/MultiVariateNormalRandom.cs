@@ -8,6 +8,8 @@ namespace ExRandom.MultiVariate {
         readonly double[] mu_vector;
         readonly double[][] lower_tri_matrix;
 
+        public MT19937 Mt { get; }
+
         public MultiVariateNormalRandom(MT19937 mt, double[,] cov_matrix, [AllowNull] double[] mu_vector = null) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
@@ -37,6 +39,7 @@ namespace ExRandom.MultiVariate {
             this.lower_tri_matrix = l;
 
             this.mu_vector = (mu_vector != null) ? mu_vector : new double[dim];
+            this.Mt = mt;
         }
 
         public override Vector<double> Next() {

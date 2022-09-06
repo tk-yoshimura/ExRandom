@@ -2,8 +2,10 @@
 
 namespace ExRandom.Discrete {
     public class DiceRandom : Random {
-        readonly MT19937 mt;
-        readonly uint sides, cut;
+        readonly uint cut;
+
+        public MT19937 Mt { get; }
+        public uint Sides { get; }
 
         public DiceRandom(MT19937 mt, int sides = 6) {
             if (mt is null) {
@@ -13,19 +15,19 @@ namespace ExRandom.Discrete {
                 throw new ArgumentOutOfRangeException(nameof(sides));
             }
 
-            this.mt = mt;
-            this.sides = (uint)sides;
-            this.cut = (uint.MaxValue % this.sides + 1) % this.sides;
+            this.Mt = mt;
+            this.Sides = (uint)sides;
+            this.cut = (uint.MaxValue % this.Sides + 1) % this.Sides;
         }
 
         public override int Next() {
             uint r;
 
             do {
-                r = mt.Next();
+                r = Mt.Next();
             } while (r < cut);
 
-            return (int)(r % sides);
+            return (int)(r % Sides);
         }
     }
 }

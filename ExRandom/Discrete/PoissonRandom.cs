@@ -2,9 +2,11 @@
 
 namespace ExRandom.Discrete {
     public class PoissonRandom : Random {
-        readonly MT19937 mt;
         readonly double thr;
-        readonly int max;
+
+        public MT19937 Mt { get; }
+        public int Max { get; }
+        public double Lambda { get; }
 
         public PoissonRandom(MT19937 mt, double lambda = 1, int max = int.MaxValue) {
             if (mt is null) {
@@ -17,9 +19,10 @@ namespace ExRandom.Discrete {
                 throw new ArgumentOutOfRangeException(nameof(max));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
+            this.Lambda = lambda;
             this.thr = Math.Exp(-lambda);
-            this.max = max;
+            this.Max = max;
         }
 
         public override int Next() {
@@ -27,9 +30,9 @@ namespace ExRandom.Discrete {
             double m = 1;
             do {
                 cnt++;
-                m *= mt.NextDouble();
+                m *= Mt.NextDouble();
 
-                if (cnt >= max)
+                if (cnt >= Max)
                     break;
             } while (m >= thr);
 

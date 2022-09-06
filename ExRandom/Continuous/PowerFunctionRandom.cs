@@ -2,8 +2,12 @@
 
 namespace ExRandom.Continuous {
     public class PowerFunctionRandom : Random {
-        readonly MT19937 mt;
-        readonly double inv_p, min, range;
+        readonly double inv_p, range;
+
+        public MT19937 Mt { get; }
+        public double P { get; }
+        public double Min { get; }
+        public double Max { get; }
 
         public PowerFunctionRandom(MT19937 mt, double p = 1, double min = 0, double max = 1) {
             if (mt is null) {
@@ -16,17 +20,19 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException($"{nameof(min)}<{nameof(max)}");
             }
 
-            this.mt = mt;
+            this.Mt = mt;
+            this.P = p;
             this.inv_p = 1 / p;
 
-            this.min = min;
+            this.Min = min;
+            this.Max = max;
             this.range = max - min;
         }
 
         public override double Next() {
-            double u = mt.NextDouble();
+            double u = Mt.NextDouble();
 
-            return min + range * Math.Pow(u, inv_p);
+            return Min + range * Math.Pow(u, inv_p);
         }
     }
 }

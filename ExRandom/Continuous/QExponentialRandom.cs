@@ -2,9 +2,12 @@
 
 namespace ExRandom.Continuous {
     public class QExponentialRandom : Random {
-        readonly MT19937 mt;
-        readonly double q, q_prime, lambda, c;
+        readonly double q_prime, c;
         readonly Func<double, double> q_logarithm;
+
+        public MT19937 Mt { get; }
+        public double Q { get; }
+        public double Lambda { get; }
 
         public QExponentialRandom(MT19937 mt, double q = 0.5, double lambda = 1) {
             if (mt is null) {
@@ -17,10 +20,10 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(lambda));
             }
 
-            this.mt = mt;
-            this.q = q;
+            this.Mt = mt;
+            this.Q = q;
             this.q_prime = 1 / (2 - q);
-            this.lambda = lambda;
+            this.Lambda = lambda;
             this.c = -q_prime / lambda;
 
             if (q_prime == 1) {
@@ -32,7 +35,7 @@ namespace ExRandom.Continuous {
         }
 
         public override double Next() {
-            return c * q_logarithm(mt.NextDouble_OpenInterval0());
+            return c * q_logarithm(Mt.NextDouble_OpenInterval0());
         }
     }
 }

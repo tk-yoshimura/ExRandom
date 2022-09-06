@@ -2,12 +2,16 @@
 
 namespace ExRandom.Continuous {
     public class QGaussianRandom : Random {
-        readonly MT19937 mt;
-        readonly double q, q_prime, beta, mu, c;
+        readonly double q_prime, c;
         readonly Func<double, double> q_logarithm;
 
         double r;
         bool is_pear_generate = false;
+
+        public MT19937 Mt { get; }
+        public double Q { get; }
+        public double Beta { get; }
+        public double Mu { get; }
 
         public QGaussianRandom(MT19937 mt, double q = 2, double beta = 1, double mu = 0) {
             if (mt is null) {
@@ -20,11 +24,11 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(beta));
             }
 
-            this.mt = mt;
-            this.q = q;
+            this.Mt = mt;
+            this.Q = q;
             this.q_prime = (1 + q) / (3 - q);
-            this.beta = beta;
-            this.mu = mu;
+            this.Beta = beta;
+            this.Mu = mu;
             this.c = 1 / Math.Sqrt(beta * (3 - q));
 
             if (q_prime == 1) {
@@ -46,8 +50,8 @@ namespace ExRandom.Continuous {
 
                 is_pear_generate = true;
 
-                z1 = mt.NextDouble_OpenInterval0();
-                z2 = mt.NextDouble_OpenInterval0();
+                z1 = Mt.NextDouble_OpenInterval0();
+                z2 = Mt.NextDouble_OpenInterval0();
                 sq_log_z1 = Math.Sqrt(-2.0 * q_logarithm(z1));
                 pi_z2 = 2.0 * Math.PI * z2;
 
@@ -57,7 +61,7 @@ namespace ExRandom.Continuous {
         }
 
         public override double Next() {
-            return Generate() * c + mu;
+            return Generate() * c + Mu;
         }
     }
 }

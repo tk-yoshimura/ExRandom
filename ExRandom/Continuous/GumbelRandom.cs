@@ -2,8 +2,9 @@
 
 namespace ExRandom.Continuous {
     public class GumbelRandom : Random {
-        readonly MT19937 mt;
-        readonly double beta, lambda;
+        public MT19937 Mt { get; }
+        public double Beta { get; }
+        public double Lambda { get; }
 
         public GumbelRandom(MT19937 mt, double beta = 1, double lambda = 0) {
             if (mt is null) {
@@ -13,15 +14,15 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(beta));
             }
 
-            this.mt = mt;
-            this.beta = beta;
-            this.lambda = lambda;
+            this.Mt = mt;
+            this.Beta = beta;
+            this.Lambda = lambda;
         }
 
         public override double Next() {
-            double u = mt.NextDouble_OpenInterval01();
+            double u = Mt.NextDouble_OpenInterval01();
 
-            return lambda - beta * Math.Log(-Math.Log(u));
+            return Lambda - Beta * Math.Log(-Math.Log(u));
         }
     }
 }

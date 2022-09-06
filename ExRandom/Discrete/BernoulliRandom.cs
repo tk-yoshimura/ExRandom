@@ -2,8 +2,8 @@
 
 namespace ExRandom.Discrete {
     public class BernoulliRandom : Random {
-        readonly MT19937 mt;
-        readonly double thr;
+        public MT19937 Mt { get; }
+        public double Prob { get; }
 
         public BernoulliRandom(MT19937 mt, double prob = 0.5) {
             if (mt is null) {
@@ -13,8 +13,8 @@ namespace ExRandom.Discrete {
                 throw new ArgumentOutOfRangeException(nameof(prob));
             }
 
-            this.mt = mt;
-            this.thr = prob;
+            this.Mt = mt;
+            this.Prob = prob;
         }
 
         public override int Next() {
@@ -22,7 +22,7 @@ namespace ExRandom.Discrete {
         }
 
         public bool NextBool() {
-            return mt.NextDouble_OpenInterval1() < thr;
+            return Mt.NextDouble_OpenInterval1() < Prob;
         }
     }
 }

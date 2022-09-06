@@ -2,9 +2,13 @@
 
 namespace ExRandom.Discrete {
     public class HyperGeometricRandom : Random {
-        readonly MT19937 mt;
         readonly int[] indexs;
         readonly double[] probs;
+
+        public MT19937 Mt { get; }
+        public int N { get; }
+        public int K { get; }
+        public int M { get; }
 
         public HyperGeometricRandom(MT19937 mt, int n = 30, int k = 20, int m = 10) {
             if (mt is null) {
@@ -23,8 +27,10 @@ namespace ExRandom.Discrete {
             double p;
             double[] next_probs;
 
-            this.mt = mt;
-
+            this.Mt = mt;
+            this.N = n;
+            this.K = k;
+            this.M = m;
             this.indexs = new int[max - min + 1];
             this.probs = new double[max - min + 1];
 
@@ -56,7 +62,7 @@ namespace ExRandom.Discrete {
         }
 
         public override int Next() {
-            double r = mt.NextDouble_OpenInterval1();
+            double r = Mt.NextDouble_OpenInterval1();
 
             for (int i = probs.Length - 1; i >= 0; i--) {
                 r -= probs[i];

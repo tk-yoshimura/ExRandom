@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ExRandom.Discrete {
     public class RouletteRandom : Random {
-        readonly MT19937 mt;
         readonly int[] indexs;
         readonly double[] probs;
+
+        public MT19937 Mt { get; }
+        public IReadOnlyList<double> Probs => probs;
 
         public RouletteRandom(MT19937 mt, params double[] probs) {
             if (mt is null) {
@@ -24,7 +27,7 @@ namespace ExRandom.Discrete {
                 throw new ArgumentOutOfRangeException(nameof(probs));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
 
             this.indexs = new int[probs.Length];
             this.probs = new double[probs.Length];
@@ -38,7 +41,7 @@ namespace ExRandom.Discrete {
         }
 
         public override int Next() {
-            double r = mt.NextDouble_OpenInterval1();
+            double r = Mt.NextDouble_OpenInterval1();
 
             for (int i = probs.Length - 1; i >= 0; i--) {
                 r -= probs[i];

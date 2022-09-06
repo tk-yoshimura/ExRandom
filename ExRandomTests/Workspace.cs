@@ -5,7 +5,7 @@ namespace ExRandomTests {
         public static string OutDir { private set; get; }
 
         static Workspace() {
-            OutDir = "../../../test_outputs/";
+            OutDir = "../../../test_outputs_net6/";
 
             Directory.CreateDirectory(OutDir);
         }

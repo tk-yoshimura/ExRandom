@@ -2,9 +2,11 @@
 
 namespace ExRandom.Continuous {
     public class InverseGaussRandom : Random {
-        readonly MT19937 mt;
         readonly NormalRandom nd;
-        readonly double mu, lambda;
+
+        public MT19937 Mt { get; }
+        public double Mu { get; }
+        public double Lambda { get; }
 
         public InverseGaussRandom(MT19937 mt, double lambda = 1, double mu = 1) {
             if (mt is null) {
@@ -17,21 +19,21 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(lambda));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
             this.nd = new NormalRandom(mt);
-            this.mu = mu;
-            this.lambda = lambda;
+            this.Mu = mu;
+            this.Lambda = lambda;
         }
 
         public override double Next() {
             double x, y, z, w;
 
             x = nd.Next();
-            y = x * x * mu;
-            z = mt.NextDouble();
-            w = mu - (0.5 * mu / lambda) * (Math.Sqrt(y * (y + 4.0 * lambda)) - y);
+            y = x * x * Mu;
+            z = Mt.NextDouble();
+            w = Mu - (0.5 * Mu / Lambda) * (Math.Sqrt(y * (y + 4.0 * Lambda)) - y);
 
-            return (z < (mu / (mu + w))) ? w : (mu * mu / w);
+            return (z < (Mu / (Mu + w))) ? w : (Mu * Mu / w);
         }
     }
 }

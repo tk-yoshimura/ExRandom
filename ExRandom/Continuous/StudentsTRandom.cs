@@ -6,6 +6,9 @@ namespace ExRandom.Continuous {
         readonly ChiSquaredRandom cd;
         readonly double inv_nu;
 
+        public MT19937 Mt { get; }
+        public uint Nu { get; }
+
         public StudentsTRandom(MT19937 mt, uint nu = 2) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
@@ -17,6 +20,8 @@ namespace ExRandom.Continuous {
             this.nd = new NormalRandom(mt);
             this.cd = new ChiSquaredRandom(mt, k: nu);
             this.inv_nu = 1.0 / nu;
+            this.Mt = mt;
+            this.Nu = nu;
         }
 
         public override double Next() {

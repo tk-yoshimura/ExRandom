@@ -1,44 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ExRandom.MultiVariate {
     public class DirichletRandom : Random<double> {
         readonly int dim;
-        readonly Continuous.GammaRandom[] gr_list;
+        readonly Continuous.GammaRandom[] grs;
 
-        public DirichletRandom(MT19937 mt, params double[] alpha_list) {
+        public MT19937 Mt { get; }
+        public IReadOnlyList<double> Alphas { get; }
+
+        public DirichletRandom(MT19937 mt, params double[] alphas) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
             }
-            if (alpha_list is null || alpha_list.Length <= 1) {
-                throw new ArgumentException(nameof(alpha_list));
+            if (alphas is null || alphas.Length <= 1) {
+                throw new ArgumentException(nameof(alphas));
             }
 
-            this.dim = alpha_list.Length;
+            this.dim = alphas.Length;
 
-            this.gr_list = new Continuous.GammaRandom[dim];
+            this.grs = new Continuous.GammaRandom[dim];
 
             for (int i = 0; i < dim; i++) {
-                this.gr_list[i] = new Continuous.GammaRandom(mt, kappa: alpha_list[i], theta: 1);
+                this.grs[i] = new Continuous.GammaRandom(mt, kappa: alphas[i], theta: 1);
             }
+
+            this.Mt = mt;
+            this.Alphas = alphas;
         }
 
         public override Vector<double> Next() {
             double r_sum = 0;
-            double[] r_list = new double[dim];
-            Vector<double> v = new Vector<double>(new double[dim - 1]);
+            double[] rs = new double[dim];
+            double[] v = new double[dim - 1];
 
             for (int i = 0; i < dim; i++) {
-                r_list[i] = gr_list[i].Next();
-                r_sum += r_list[i];
+                rs[i] = grs[i].Next();
+                r_sum += rs[i];
             }
 
             r_sum = Math.Max(r_sum, double.Epsilon);
 
             for (int i = 0; i < dim - 1; i++) {
-                v[i] = r_list[i] / r_sum;
+                v[i] = rs[i] / r_sum;
             }
 
-            return v;
+            return new Vector<double>(v);
         }
     }
 }

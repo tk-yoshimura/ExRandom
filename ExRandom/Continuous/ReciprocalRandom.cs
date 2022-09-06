@@ -2,8 +2,9 @@
 
 namespace ExRandom.Continuous {
     public class ReciprocalRandom : Random {
-        readonly MT19937 mt;
-        readonly double a, b;
+        public MT19937 Mt { get; }
+        public double A { get; }
+        public double B { get; }
 
         public ReciprocalRandom(MT19937 mt, double a = 1, double b = 2) {
             if (mt is null) {
@@ -16,15 +17,16 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(b));
             }
 
-            this.mt = mt;
-            this.a = a;
-            this.b = b;
+            this.Mt = mt;
+            this.A = a;
+            this.B = b;
         }
 
-        public override double Next() {
-            double u = mt.NextDouble();
 
-            return Math.Pow(a, u) * Math.Pow(b, 1 - u);
+        public override double Next() {
+            double u = Mt.NextDouble();
+
+            return Math.Pow(A, u) * Math.Pow(B, 1 - u);
         }
     }
 }

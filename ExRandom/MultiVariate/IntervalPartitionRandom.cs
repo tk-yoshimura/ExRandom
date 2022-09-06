@@ -2,8 +2,9 @@
 
 namespace ExRandom.MultiVariate {
     public class IntervalPartitionDiscreteRandom : Random<int> {
-        readonly MT19937 mt;
-        readonly int dim, interval;
+        public MT19937 Mt { get; }
+        public int Dim { get; }
+        public int Interval { get; }
 
         public IntervalPartitionDiscreteRandom(MT19937 mt, int dim = 3, int interval = 10) {
             if (mt is null) {
@@ -16,18 +17,18 @@ namespace ExRandom.MultiVariate {
                 throw new ArgumentOutOfRangeException(nameof(dim));
             }
 
-            this.mt = mt;
-            this.dim = dim;
-            this.interval = interval;
+            this.Mt = mt;
+            this.Dim = dim;
+            this.Interval = interval;
         }
 
         public override Vector<int> Next() {
-            int n = interval;
-            int[] v = new int[dim];
+            int n = Interval;
+            int[] v = new int[Dim];
             double p, r;
 
-            for (int d = dim - 1, x; d > 0; d--) {
-                r = mt.NextDouble_OpenInterval1();
+            for (int d = Dim - 1, x; d > 0; d--) {
+                r = Mt.NextDouble_OpenInterval1();
                 p = d / (double)(n + d);
                 x = 0;
 
@@ -47,17 +48,18 @@ namespace ExRandom.MultiVariate {
 
             v[0] = n;
 
-            RandomUtilitys.Shuffle(mt, v);
+            RandomUtilitys.Shuffle(Mt, v);
 
             return new Vector<int>(v);
         }
     }
 
     public class IntervalPartitionContinuousRandom : Random<double> {
-        readonly MT19937 mt;
-        readonly int dim;
-        readonly double interval;
         readonly double[] array;
+
+        public MT19937 Mt { get; }
+        public int Dim { get; }
+        public double Interval { get; }
 
         public IntervalPartitionContinuousRandom(MT19937 mt, int dim, double interval) {
             if (!(interval > 0)) {
@@ -68,9 +70,9 @@ namespace ExRandom.MultiVariate {
                 throw new ArgumentException(nameof(dim));
             }
 
-            this.mt = mt;
-            this.dim = dim;
-            this.interval = interval;
+            this.Mt = mt;
+            this.Dim = dim;
+            this.Interval = interval;
             this.array = new double[dim + 1];
             this.array[0] = 0;
             this.array[dim] = 1;
@@ -79,19 +81,19 @@ namespace ExRandom.MultiVariate {
         public override Vector<double> Next() {
             int i;
 
-            for (i = 1; i < dim; i++) {
-                array[i] = mt.NextDouble();
+            for (i = 1; i < Dim; i++) {
+                array[i] = Mt.NextDouble();
             }
 
-            Array.Sort(array, 1, dim - 1);
+            Array.Sort(array, 1, Dim - 1);
 
-            double[] v = new double[dim];
+            double[] v = new double[Dim];
 
-            for (i = 0; i < dim; i++) {
-                v[i] = (array[i + 1] - array[i]) * interval;
+            for (i = 0; i < Dim; i++) {
+                v[i] = (array[i + 1] - array[i]) * Interval;
             }
 
-            RandomUtilitys.Shuffle(mt, v);
+            RandomUtilitys.Shuffle(Mt, v);
 
             return new Vector<double>(v);
         }

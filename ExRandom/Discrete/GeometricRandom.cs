@@ -3,9 +3,11 @@
 namespace ExRandom.Discrete {
     public class GeometricRandom : Random {
         const int dist_size = 16;
-        readonly MT19937 mt;
-        readonly int max;
         readonly double[] dist;
+
+        public MT19937 Mt { get; }
+        public double Prob { get; }
+        public int Max { get; }
 
         public GeometricRandom(MT19937 mt, double prob = 0.5, int max = int.MaxValue) {
             if (mt is null) {
@@ -18,8 +20,9 @@ namespace ExRandom.Discrete {
                 throw new ArgumentOutOfRangeException(nameof(max));
             }
 
-            this.mt = mt;
-            this.max = max;
+            this.Mt = mt;
+            this.Prob = prob;
+            this.Max = max;
 
             double sum_prob = 0;
 
@@ -34,11 +37,11 @@ namespace ExRandom.Discrete {
             int i = 1;
 
             for (; ; ) {
-                double r = mt.NextDouble_OpenInterval1();
+                double r = Mt.NextDouble_OpenInterval1();
 
                 foreach (var d in dist) {
                     r -= d;
-                    if (r <= 0 || i >= max) {
+                    if (r <= 0 || i >= Max) {
                         return i;
                     }
                     i++;

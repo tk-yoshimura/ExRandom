@@ -4,6 +4,9 @@ namespace ExRandom.Continuous {
     public class ChiSquaredRandom : Random {
         readonly GammaRandom gr;
 
+        public MT19937 Mt { get; }
+        public uint K { get; }
+
         public ChiSquaredRandom(MT19937 mt, uint k = 2) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
@@ -13,6 +16,8 @@ namespace ExRandom.Continuous {
             }
 
             this.gr = new GammaRandom(mt, kappa: k * 0.5, theta: 2);
+            this.Mt = mt;
+            this.K = k;
         }
 
         public override double Next() {

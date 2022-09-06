@@ -2,21 +2,21 @@
 
 namespace ExRandom.MultiVariate {
     public class InsideCircularRandom : Random<double> {
-        readonly MT19937 mt;
+        public MT19937 Mt { get; }
 
         public InsideCircularRandom(MT19937 mt) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
         }
 
         public override Vector<double> Next() {
             double theta, r;
 
-            theta = 2 * Math.PI * mt.NextDouble_OpenInterval1();
-            r = Math.Sqrt(mt.NextDouble());
+            theta = 2 * Math.PI * Mt.NextDouble_OpenInterval1();
+            r = Math.Sqrt(Mt.NextDouble());
 
             return new Vector<double>(r * Math.Cos(theta), r * Math.Sin(theta));
         }

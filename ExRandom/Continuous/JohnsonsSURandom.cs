@@ -2,8 +2,11 @@
 
 namespace ExRandom.Continuous {
     public class JohnsonsSURandom : Random {
-        readonly MT19937 mt;
-        readonly double delta, lambda, gamma, eta;
+        public MT19937 Mt { get; }
+        public double Delta { get; }
+        public double Lambda { get; }
+        public double Gamma { get; }
+        public double Eta { get; }
 
         public JohnsonsSURandom(MT19937 mt, double delta = 1, double lambda = 1, double gamma = 0, double eta = 0) {
             if (mt is null) {
@@ -22,17 +25,17 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(eta));
             }
 
-            this.mt = mt;
-            this.delta = delta;
-            this.lambda = lambda;
-            this.gamma = gamma;
-            this.eta = eta;
+            this.Mt = mt;
+            this.Delta = delta;
+            this.Lambda = lambda;
+            this.Gamma = gamma;
+            this.Eta = eta;
         }
 
         public override double Next() {
-            double u = mt.NextDouble_OpenInterval01();
+            double u = Mt.NextDouble_OpenInterval01();
 
-            return lambda * Math.Sinh((ErrorFunction.Probit(u) - gamma) / delta) + eta;
+            return Lambda * Math.Sinh((ErrorFunction.Probit(u) - Gamma) / Delta) + Eta;
         }
     }
 }

@@ -2,22 +2,22 @@
 
 namespace ExRandom.Discrete {
     public class BinaryRandom : Random {
-        readonly MT19937 mt;
+        public MT19937 Mt { get; }
 
         public BinaryRandom(MT19937 mt) {
             if (mt is null) {
                 throw new ArgumentNullException(nameof(mt));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
         }
 
         public override int Next() {
-            return (int)(mt.Next() & 1);
+            return (int)(Mt.Next() & 1);
         }
 
         public bool NextBool() {
-            return (mt.Next() & 1) != 0;
+            return (Mt.Next() & 1) != 0;
         }
     }
 }

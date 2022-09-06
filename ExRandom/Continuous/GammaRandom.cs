@@ -2,9 +2,12 @@
 
 namespace ExRandom.Continuous {
     public class GammaRandom : Random {
-        readonly MT19937 mt;
         readonly NormalRandom nd;
-        readonly double kappa, theta, c1, c2, c3;
+        readonly double c1, c2, c3;
+
+        public MT19937 Mt { get; }
+        public double Kappa { get; }
+        public double Theta { get; }
 
         public GammaRandom(MT19937 mt, double kappa = 1, double theta = 1) {
             if (mt is null) {
@@ -17,10 +20,10 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(kappa));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
             this.nd = new NormalRandom(mt);
-            this.theta = theta;
-            this.kappa = kappa;
+            this.Theta = theta;
+            this.Kappa = kappa;
 
             if (kappa < 1) {
                 double t, dt, exp_t;
@@ -51,12 +54,12 @@ namespace ExRandom.Continuous {
         public override double Next() {
             double x;
 
-            if (kappa < 1) {
+            if (Kappa < 1) {
                 double u1, u2, v, y;
 
                 while (true) {
-                    u1 = mt.NextDouble_OpenInterval01();
-                    u2 = mt.NextDouble_OpenInterval01();
+                    u1 = Mt.NextDouble_OpenInterval01();
+                    u2 = Mt.NextDouble_OpenInterval01();
 
                     v = c2 * u1;
 
@@ -71,7 +74,7 @@ namespace ExRandom.Continuous {
                         x = -Math.Log(c1 * c3 * (c2 - v));
                         y = x / c1;
 
-                        if ((u2 * (kappa + y - kappa * y) <= 1) || (u2 <= Math.Pow(y, kappa - 1))) {
+                        if ((u2 * (Kappa + y - Kappa * y) <= 1) || (u2 <= Math.Pow(y, Kappa - 1))) {
                             break;
                         }
                     }
@@ -91,7 +94,7 @@ namespace ExRandom.Continuous {
                     v = 1 + c2 * z;
                     v = v * v * v;
 
-                    u = mt.NextDouble_OpenInterval01();
+                    u = Mt.NextDouble_OpenInterval01();
 
                     if ((u < 1 - 0.0331 * (squa_z * squa_z)) || (Math.Log(u) < (0.5 * squa_z) + c1 * (1 - v + Math.Log(v)))) {
                         x = c1 * v;
@@ -100,7 +103,7 @@ namespace ExRandom.Continuous {
                 }
             }
 
-            return x * theta;
+            return x * Theta;
         }
     }
 }

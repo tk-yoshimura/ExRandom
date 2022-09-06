@@ -2,8 +2,12 @@
 
 namespace ExRandom.Continuous {
     public class FrechetRandom : Random {
-        readonly MT19937 mt;
-        readonly double inv_alpha, beta, lambda;
+        readonly double inv_alpha;
+
+        public MT19937 Mt { get; }
+        public double Alpha { get; }
+        public double Beta { get; }
+        public double Lambda { get; }
 
         public FrechetRandom(MT19937 mt, double alpha = 1, double beta = 1, double lambda = 0) {
             if (mt is null) {
@@ -16,16 +20,18 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(beta));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
+            this.Alpha = alpha;
             this.inv_alpha = 1 / alpha;
-            this.beta = beta;
-            this.lambda = lambda;
+            this.Beta = beta;
+            this.Lambda = lambda;
         }
 
-        public override double Next() {
-            double u = mt.NextDouble_OpenInterval01();
 
-            return lambda + beta / Math.Pow(-Math.Log(u), inv_alpha);
+        public override double Next() {
+            double u = Mt.NextDouble_OpenInterval01();
+
+            return Lambda + Beta / Math.Pow(-Math.Log(u), inv_alpha);
         }
     }
 }

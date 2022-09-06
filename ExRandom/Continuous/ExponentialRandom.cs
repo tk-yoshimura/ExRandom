@@ -2,8 +2,8 @@
 
 namespace ExRandom.Continuous {
     public class ExponentialRandom : Random {
-        readonly MT19937 mt;
-        readonly double lambda;
+        public MT19937 Mt { get; }
+        public double Lambda { get; }
 
         public ExponentialRandom(MT19937 mt, double lambda = 1) {
             if (mt is null) {
@@ -13,14 +13,14 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(lambda));
             }
 
-            this.mt = mt;
-            this.lambda = lambda;
+            this.Mt = mt;
+            this.Lambda = lambda;
         }
 
         public override double Next() {
-            double u = mt.NextDouble_OpenInterval0();
+            double u = Mt.NextDouble_OpenInterval0();
 
-            return -Math.Log(u) / lambda;
+            return -Math.Log(u) / Lambda;
         }
     }
 }

@@ -2,8 +2,9 @@
 
 namespace ExRandom.Continuous {
     public class LevyRandom : Random {
-        readonly MT19937 mt;
-        readonly double c, mu;
+        public MT19937 Mt { get; }
+        public double C { get; }
+        public double Mu { get; }
 
         public LevyRandom(MT19937 mt, double c = 1, double mu = 0) {
             if (mt is null) {
@@ -13,16 +14,16 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(c));
             }
 
-            this.mt = mt;
-            this.c = c;
-            this.mu = mu;
+            this.Mt = mt;
+            this.C = c;
+            this.Mu = mu;
         }
 
         public override double Next() {
-            double r = mt.NextDouble_OpenInterval01();
+            double r = Mt.NextDouble_OpenInterval01();
             double p = ErrorFunction.Probit(1 - r * 0.5);
 
-            return mu + c / (p * p);
+            return Mu + C / (p * p);
         }
     }
 }

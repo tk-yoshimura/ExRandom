@@ -3,7 +3,11 @@
 namespace ExRandom.Discrete {
     public class NegativeBinomialRandom : Random {
         readonly BernoulliRandom bd;
-        readonly int r, max;
+
+        public MT19937 Mt { get; }
+        public double Prob { get; }
+        public int R { get; }
+        public int Max { get; }
 
         public NegativeBinomialRandom(MT19937 mt, double prob = 0.5, int r = 4, int max = int.MaxValue) {
             if (mt is null) {
@@ -17,23 +21,25 @@ namespace ExRandom.Discrete {
             }
 
             this.bd = new BernoulliRandom(mt, prob);
-            this.r = r;
-            this.max = max;
+            this.Mt = mt;
+            this.Prob = prob;
+            this.R = r;
+            this.Max = max;
         }
 
         public override int Next() {
             int cnt = 0;
 
-            for (int i = 1; i < max; i++) {
+            for (int i = 1; i < Max; i++) {
                 if (bd.NextBool()) {
                     cnt++;
-                    if (cnt >= r) {
+                    if (cnt >= R) {
                         return i - cnt;
                     }
                 }
             }
 
-            return max - r;
+            return Max - R;
         }
     }
 }

@@ -3,8 +3,8 @@ using System.Linq;
 
 namespace ExRandom.MultiVariate {
     public class HypercubeRandom : Random<double> {
-        readonly MT19937 mt;
-        readonly int dim;
+        public MT19937 Mt { get; }
+        public int Dim { get; }
 
         public HypercubeRandom(MT19937 mt, int dim) {
             if (mt is null) {
@@ -14,12 +14,12 @@ namespace ExRandom.MultiVariate {
                 throw new ArgumentOutOfRangeException(nameof(dim));
             }
 
-            this.mt = mt;
-            this.dim = dim;
+            this.Mt = mt;
+            this.Dim = dim;
         }
 
         public override Vector<double> Next() {
-            return new Vector<double>(new double[dim].Select((d) => mt.NextDouble()).ToArray());
+            return new Vector<double>(new double[Dim].Select((d) => Mt.NextDouble()).ToArray());
         }
     }
 }

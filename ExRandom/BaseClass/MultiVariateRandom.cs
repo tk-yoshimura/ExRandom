@@ -2,36 +2,34 @@
 
 namespace ExRandom.MultiVariate {
     public class Vector<T> : IFormattable where T : struct, IComparable, IFormattable {
-        private readonly T[] val_list;
+        private readonly T[] vals;
+        public T X => vals[0];
+        public T Y => vals[1];
+        public T Z => vals[2];
+        public T W => vals[3];
+        public int Dim => vals.Length;
+        public T this[int index] => vals[index];
 
-        public Vector(params T[] val_list) {
-            this.val_list = (T[])val_list.Clone();
+        public Vector(params T[] vals) {
+            this.vals = (T[])vals.Clone();
         }
 
-        public T this[int index] {
-            set {
-                val_list[index] = value;
-            }
-
-            get {
-                return val_list[index];
-            }
+        public static implicit operator T[](Vector<T> vector) {
+            return (T[])vector.vals.Clone();
         }
 
-        public int Dim {
-            get {
-                return val_list.Length;
-            }
+        public static implicit operator Vector<T>(T[] vals) {
+            return new Vector<T>(vals);
         }
 
         public override string ToString() {
             string str = string.Empty;
 
             if (Dim > 0) {
-                str += val_list[0].ToString();
+                str += vals[0].ToString();
 
                 for (int i = 1; i < Dim; i++) {
-                    str += string.Format(",{0}", val_list[i].ToString());
+                    str += string.Format(",{0}", vals[i].ToString());
                 }
             }
             else {
@@ -45,10 +43,10 @@ namespace ExRandom.MultiVariate {
             string str = string.Empty;
 
             if (Dim > 0) {
-                str += val_list[0].ToString(format, provider);
+                str += vals[0].ToString(format, provider);
 
                 for (int i = 1; i < Dim; i++) {
-                    str += string.Format(",{0}", val_list[i].ToString(format, provider));
+                    str += string.Format(",{0}", vals[i].ToString(format, provider));
                 }
             }
             else {
@@ -59,65 +57,25 @@ namespace ExRandom.MultiVariate {
         }
 
         public static bool operator ==(Vector<T> v1, Vector<T> v2) {
-            return Array.Equals(v1.val_list, v2.val_list);
+            return Array.Equals(v1.vals, v2.vals);
         }
 
         public static bool operator !=(Vector<T> v1, Vector<T> v2) {
-            return !Array.Equals(v1.val_list, v2.val_list);
+            return !Array.Equals(v1.vals, v2.vals);
         }
 
         public override bool Equals(object obj) {
             var other = obj as Vector<T>;
 
-            return other != null && Array.Equals(val_list, other.val_list);
+            return other != null && Array.Equals(vals, other.vals);
         }
 
         public override int GetHashCode() {
             int hash = 0;
-            foreach (var v in val_list) {
+            foreach (var v in vals) {
                 hash ^= v.GetHashCode();
             }
             return hash;
-        }
-
-        public T X {
-            set {
-                val_list[0] = value;
-            }
-
-            get {
-                return val_list[0];
-            }
-        }
-
-        public T Y {
-            set {
-                val_list[1] = value;
-            }
-
-            get {
-                return val_list[1];
-            }
-        }
-
-        public T Z {
-            set {
-                val_list[2] = value;
-            }
-
-            get {
-                return val_list[2];
-            }
-        }
-
-        public T W {
-            set {
-                val_list[3] = value;
-            }
-
-            get {
-                return val_list[3];
-            }
         }
     }
 

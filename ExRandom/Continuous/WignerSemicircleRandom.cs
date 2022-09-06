@@ -2,9 +2,10 @@
 
 namespace ExRandom.Continuous {
     public class WignerSemicircleRandom : Random {
-        readonly MT19937 mt;
         readonly UniformRandom ud;
-        readonly double s;
+
+        public MT19937 Mt { get; }
+        public double S { get; }
 
         public WignerSemicircleRandom(MT19937 mt, double s = 1) {
             if (mt is null) {
@@ -14,9 +15,9 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(s));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
             this.ud = new UniformRandom(mt, -1, 1);
-            this.s = s;
+            this.S = s;
         }
 
         public override double Next() {
@@ -25,9 +26,9 @@ namespace ExRandom.Continuous {
             do {
                 r = ud.Next();
                 thr = Math.Sqrt(1 - r * r);
-            } while (!mt.NextBool(thr));
+            } while (!Mt.NextBool(thr));
 
-            return r * s;
+            return r * S;
         }
     }
 }

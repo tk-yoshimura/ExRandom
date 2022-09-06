@@ -2,9 +2,11 @@
 
 namespace ExRandom.Continuous {
     public class RiceRandom : Random {
-        readonly MT19937 mt;
         readonly NormalRandom nd;
-        readonly double nu, sigma;
+
+        public MT19937 Mt { get; }
+        public double Nu { get; }
+        public double Sigma { get; }
 
         public RiceRandom(MT19937 mt, double nu = 0.5, double sigma = 1) {
             if (mt is null) {
@@ -17,16 +19,16 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException(nameof(sigma));
             }
 
-            this.mt = mt;
+            this.Mt = mt;
             this.nd = new NormalRandom(mt, sigma);
-            this.nu = nu;
-            this.sigma = sigma;
+            this.Nu = nu;
+            this.Sigma = sigma;
         }
 
         public override double Next() {
-            double theta = 2 * Math.PI * mt.NextDouble_OpenInterval1();
-            double x = nu * Math.Cos(theta) + nd.Next();
-            double y = nu * Math.Sin(theta) + nd.Next();
+            double theta = 2 * Math.PI * Mt.NextDouble_OpenInterval1();
+            double x = Nu * Math.Cos(theta) + nd.Next();
+            double y = Nu * Math.Sin(theta) + nd.Next();
 
             return Math.Sqrt(x * x + y * y);
         }

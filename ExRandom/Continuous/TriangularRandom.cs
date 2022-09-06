@@ -2,8 +2,12 @@
 
 namespace ExRandom.Continuous {
     public class TriangularRandom : Random {
-        readonly MT19937 mt;
-        readonly double min, mode, max, thr, s0, s1;
+        readonly double thr, s0, s1;
+
+        public MT19937 Mt { get; }
+        public double Min { get; }
+        public double Mode { get; }
+        public double Max { get; }
 
         public TriangularRandom(MT19937 mt, double min = -1, double mode = 0, double max = 1) {
             if (mt is null) {
@@ -13,23 +17,23 @@ namespace ExRandom.Continuous {
                 throw new ArgumentOutOfRangeException($"{nameof(min)}<{nameof(mode)}<{nameof(max)}");
             }
 
-            this.mt = mt;
-            this.min = min;
-            this.mode = mode;
-            this.max = max;
+            this.Mt = mt;
+            this.Min = min;
+            this.Mode = mode;
+            this.Max = max;
             this.thr = (mode - min) / (max - min);
             this.s0 = (max - min) * (mode - min);
             this.s1 = (max - min) * (max - mode);
         }
 
         public override double Next() {
-            double r = mt.NextDouble();
+            double r = Mt.NextDouble();
 
             if (r < thr) {
-                return min + Math.Sqrt(r * s0);
+                return Min + Math.Sqrt(r * s0);
             }
             else {
-                return max - Math.Sqrt((1.0 - r) * s1);
+                return Max - Math.Sqrt((1.0 - r) * s1);
             }
         }
     }
