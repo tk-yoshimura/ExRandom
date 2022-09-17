@@ -1,5 +1,5 @@
 # ExRandom
- Random number generation class group by various probability distributions
+ Random number generation class group by various probability distributions 
 
 ## Requirement
  .NET 6.0
