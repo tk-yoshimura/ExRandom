@@ -10,9 +10,7 @@ namespace ExRandom.Discrete {
         public IReadOnlyList<double> Probs => probs;
 
         public RouletteRandom(MT19937 mt, params double[] probs) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             double sum_prob = 0;
             for (int i = 0; i < probs.Length; i++) {

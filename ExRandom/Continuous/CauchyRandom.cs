@@ -7,9 +7,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public CauchyRandom(MT19937 mt, double gamma = 1, double mu = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.Mt = mt;
             this.Gamma = gamma;

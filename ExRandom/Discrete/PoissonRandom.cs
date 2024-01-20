@@ -9,9 +9,7 @@ namespace ExRandom.Discrete {
         public double Lambda { get; }
 
         public PoissonRandom(MT19937 mt, double lambda = 1, int max = int.MaxValue) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(lambda > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(lambda));
             }

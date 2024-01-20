@@ -13,9 +13,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public QGaussianRandom(MT19937 mt, double q = 2, double beta = 1, double mu = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(q < 3)) {
                 throw new ArgumentOutOfRangeException(nameof(q));
             }

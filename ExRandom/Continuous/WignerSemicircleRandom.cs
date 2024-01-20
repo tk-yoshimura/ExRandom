@@ -8,9 +8,7 @@ namespace ExRandom.Continuous {
         public double S { get; }
 
         public WignerSemicircleRandom(MT19937 mt, double s = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(s > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(s));
             }

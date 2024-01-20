@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double Max { get; }
 
         public UniformRandom(MT19937 mt, double min = 0, double max = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(min < max)) {
                 throw new ArgumentOutOfRangeException($"{nameof(min)}<{nameof(max)}");
             }

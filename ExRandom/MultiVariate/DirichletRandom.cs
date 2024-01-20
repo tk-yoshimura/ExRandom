@@ -10,9 +10,7 @@ namespace ExRandom.MultiVariate {
         public IReadOnlyList<double> Alphas { get; }
 
         public DirichletRandom(MT19937 mt, params double[] alphas) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (alphas is null || alphas.Length <= 1) {
                 throw new ArgumentException(nameof(alphas));
             }

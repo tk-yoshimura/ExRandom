@@ -11,9 +11,7 @@ namespace ExRandom.MultiVariate {
         public MT19937 Mt { get; }
 
         public MultiVariateNormalRandom(MT19937 mt, double[,] cov_matrix, [AllowNull] double[] mu_vector = null) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (cov_matrix.GetLength(0) != cov_matrix.GetLength(1)) {
                 throw new ArgumentException(nameof(cov_matrix));
             }

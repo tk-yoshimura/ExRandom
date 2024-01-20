@@ -10,9 +10,7 @@ namespace ExRandom.Continuous {
         public uint Nu { get; }
 
         public StudentsTRandom(MT19937 mt, uint nu = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (nu < 1) {
                 throw new ArgumentException(nameof(nu));
             }

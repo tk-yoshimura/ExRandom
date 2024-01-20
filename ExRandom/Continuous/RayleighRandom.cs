@@ -6,9 +6,7 @@ namespace ExRandom.Continuous {
         public double Sigma { get; }
 
         public RayleighRandom(MT19937 mt, double sigma = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.Mt = mt;
             this.Sigma = sigma;

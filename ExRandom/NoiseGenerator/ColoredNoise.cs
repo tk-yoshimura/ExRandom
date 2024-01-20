@@ -11,9 +11,7 @@ namespace ExRandom.NoiseGenerator {
         public MT19937 Mt { get; }
 
         public ColoredNoise(MT19937 mt, double alpha, int precision = 6) : base(alpha) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(alpha >= -2) || alpha > 2) {
                 throw new ArgumentOutOfRangeException(nameof(alpha));
             }

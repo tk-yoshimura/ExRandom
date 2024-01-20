@@ -7,9 +7,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public LogisticRandom(MT19937 mt, double sigma = 1, double mu = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.Mt = mt;
             this.Sigma = sigma;

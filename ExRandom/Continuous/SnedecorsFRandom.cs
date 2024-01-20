@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double D2 { get; }
 
         public SnedecorsFRandom(MT19937 mt, uint d1 = 2, uint d2 = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.cd1 = new ChiSquaredRandom(mt, k: d1);
             this.cd2 = new ChiSquaredRandom(mt, k: d2);

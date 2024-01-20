@@ -9,9 +9,7 @@ namespace ExRandom.Discrete {
         public int Max { get; }
 
         public LogarithmicRandom(MT19937 mt, double p = 0.5, int max = int.MaxValue) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(p > 0) || p >= 1) {
                 throw new ArgumentOutOfRangeException(nameof(p));
             }

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ExRandom")]
-[assembly: AssemblyCopyright("Copyright © 2017-2022 T.Yoshimura All Rights Reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2017-2024 T.Yoshimura All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
 [assembly: Guid("9c4e5824-3ce4-4749-841c-ada7d78eba20")]
 
-[assembly: AssemblyVersion("3.3.0")]
+[assembly: AssemblyVersion("3.4.0")]

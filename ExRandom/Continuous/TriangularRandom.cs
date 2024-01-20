@@ -10,9 +10,7 @@ namespace ExRandom.Continuous {
         public double Max { get; }
 
         public TriangularRandom(MT19937 mt, double min = -1, double mode = 0, double max = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(min < mode) || !(mode < max)) {
                 throw new ArgumentOutOfRangeException($"{nameof(min)}<{nameof(mode)}<{nameof(max)}");
             }
@@ -42,9 +40,7 @@ namespace ExRandom.Continuous {
         private readonly MT19937 mt;
 
         public UnitTriangularRandom(MT19937 mt) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.mt = mt;
         }

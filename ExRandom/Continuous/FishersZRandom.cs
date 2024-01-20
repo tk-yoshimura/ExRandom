@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public uint D2 { get; }
 
         public FishersZRandom(MT19937 mt, uint d1 = 2, uint d2 = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.sd = new SnedecorsFRandom(mt, d1, d2);
             this.Mt = mt;

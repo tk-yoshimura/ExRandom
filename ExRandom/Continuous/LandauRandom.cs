@@ -7,9 +7,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public LandauRandom(MT19937 mt, double s = 1, double mu = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(s > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(s));
             }
@@ -83,7 +81,7 @@ namespace ExRandom.Continuous {
 
         private const int table_size = 1000;
         private static readonly double[] table_grad;
-        private static readonly double[] table = {
+        private static readonly double[] table = [
             1.510933788457820e+00,1.511437546574627e+00,1.511942156394705e+00,1.512447620873696e+00,1.512953943072885e+00,
             1.513461126158531e+00,1.513969173401236e+00,1.514478088175363e+00,1.514987873958505e+00,1.515498534330988e+00,
             1.516010072975432e+00,1.516522493676347e+00,1.517035800319773e+00,1.517549996892973e+00,1.518065087484161e+00,
@@ -285,6 +283,6 @@ namespace ExRandom.Continuous {
             1.371957427647255e+01,1.374756084648040e+01,1.377554707073569e+01,1.380353293849842e+01,1.383151843874858e+01,
             1.385950356017770e+01,1.388748829117998e+01,1.391547261984334e+01,1.394345653394015e+01,1.397144002091769e+01,
             1.399942306788850e+01
-        };
+        ];
     }
 }

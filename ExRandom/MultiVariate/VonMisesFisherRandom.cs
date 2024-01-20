@@ -10,9 +10,7 @@ namespace ExRandom.MultiVariate {
         public double Kappa { get; }
 
         public VonMisesFisherRandom(MT19937 mt, Vector<double> mu, double kappa = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (mu.Dim != 3) {
                 throw new ArgumentException(nameof(mu));
             }

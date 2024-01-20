@@ -7,9 +7,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public LevyRandom(MT19937 mt, double c = 1, double mu = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(c > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(c));
             }

@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double B { get; }
 
         public KumaraswamyRandom(MT19937 mt, double a = 2, double b = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(a > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(a));
             }

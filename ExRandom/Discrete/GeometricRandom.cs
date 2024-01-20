@@ -10,9 +10,7 @@ namespace ExRandom.Discrete {
         public int Max { get; }
 
         public GeometricRandom(MT19937 mt, double prob = 0.5, int max = int.MaxValue) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(prob > 0) || !(prob <= 1)) {
                 throw new ArgumentOutOfRangeException(nameof(prob));
             }

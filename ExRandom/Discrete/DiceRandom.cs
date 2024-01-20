@@ -8,9 +8,7 @@ namespace ExRandom.Discrete {
         public uint Sides { get; }
 
         public DiceRandom(MT19937 mt, int sides = 6) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (sides < 1) {
                 throw new ArgumentOutOfRangeException(nameof(sides));
             }

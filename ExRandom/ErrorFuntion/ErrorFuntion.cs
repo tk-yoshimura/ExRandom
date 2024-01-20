@@ -4,7 +4,7 @@ namespace ExRandom {
     public static class ErrorFunction {
         private static readonly double c = 1 / Sqrt(PI);
         private static readonly double sqrt2 = Sqrt(2), inv_sqrt2 = 1 / sqrt2;
-        private static readonly double[] ts_nz = new double[] {
+        private static readonly double[] ts_nz = [
             -1d / 3d,
             +1d / 10d,
             -1d / 42d,
@@ -21,8 +21,8 @@ namespace ExRandom {
             +1d / 2528170444800d,
             -1d / 40537905408000d,
             +1d / 690452066304000d,
-        };
-        private static readonly double[] rs_1p5 = new double[] {
+        ];
+        private static readonly double[] rs_1p5 = [
             +3.10959374658724304747,
             +1.58216379147219475644,
             +6.86581462686392581682e-2,
@@ -40,8 +40,8 @@ namespace ExRandom {
             +1.29951459936111140962e-8,
             -3.66462961828327543879e-9,
             +6.58452450693565385952e-10,
-        };
-        private static readonly double[] rs_2p5 = new double[] {
+        ];
+        private static readonly double[] rs_2p5 = [
             +4.74368980487682914473,
             +1.67300808283044683760,
             +2.88681492582322304165e-2,
@@ -57,8 +57,8 @@ namespace ExRandom {
             -9.68791793029374656766e-9,
             +2.00705758562891713156e-9,
             -3.13517047235050787604e-10,
-        };
-        private static readonly double[] rs_3p5 = new double[] {
+        ];
+        private static readonly double[] rs_3p5 = [
             +6.43941309823043372807,
             +1.71352517475253703158,
             +1.38933570584877952850e-2,
@@ -74,7 +74,7 @@ namespace ExRandom {
             -3.52909361611086312255e-10,
             +1.13947834533010736477e-10,
             -2.74281792359942252744e-11,
-        };
+        ];
 
         public static double Erf(double z) {
             if (double.IsNaN(z)) {

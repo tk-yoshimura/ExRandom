@@ -10,9 +10,7 @@ namespace ExRandom.Continuous {
         public double Theta { get; }
 
         public GammaRandom(MT19937 mt, double kappa = 1, double theta = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(theta > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(theta));
             }

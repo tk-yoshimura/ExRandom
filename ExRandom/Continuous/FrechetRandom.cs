@@ -10,9 +10,7 @@ namespace ExRandom.Continuous {
         public double Lambda { get; }
 
         public FrechetRandom(MT19937 mt, double alpha = 1, double beta = 1, double lambda = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(alpha > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(alpha));
             }

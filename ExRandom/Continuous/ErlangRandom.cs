@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double Theta { get; }
 
         public ErlangRandom(MT19937 mt, uint k = 2, double theta = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.gd = new GammaRandom(mt, kappa: k, theta: theta);
             this.Mt = mt;

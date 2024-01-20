@@ -5,9 +5,7 @@ namespace ExRandom.MultiVariate {
         public MT19937 Mt { get; }
 
         public InsideSphericalRandom(MT19937 mt) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.Mt = mt;
         }

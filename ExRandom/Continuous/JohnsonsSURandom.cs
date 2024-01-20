@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double Eta { get; }
 
         public JohnsonsSURandom(MT19937 mt, double delta = 1, double lambda = 1, double gamma = 0, double eta = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(delta > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(delta));
             }

@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double Sigma { get; }
 
         public RiceRandom(MT19937 mt, double nu = 0.5, double sigma = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(nu >= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(nu));
             }

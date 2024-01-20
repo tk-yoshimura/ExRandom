@@ -5,12 +5,8 @@ using System.Linq;
 namespace ExRandom {
     public static class RandomUtilitys {
         public static void Shuffle<Type>(MT19937 mt, Type[] array) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
-            if (array is null) {
-                throw new ArgumentNullException(nameof(array));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
+            ArgumentNullException.ThrowIfNull(array);
 
             Discrete.DiceRandom rd;
 
@@ -24,12 +20,8 @@ namespace ExRandom {
         }
 
         public static IEnumerable<Type> Select<Type>(MT19937 mt, Type[] array, int select_num) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
-            if (array is null) {
-                throw new ArgumentNullException(nameof(array));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
+            ArgumentNullException.ThrowIfNull(array);
 
             bool[] v = Fill(mt, array.Length, select_num);
 
@@ -43,15 +35,9 @@ namespace ExRandom {
         }
 
         public static double RejectionNext(MT19937 mt, Continuous.Random rd, Func<double, double> adopt_prob_func) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
-            if (rd is null) {
-                throw new ArgumentNullException(nameof(rd));
-            }
-            if (adopt_prob_func is null) {
-                throw new ArgumentNullException(nameof(adopt_prob_func));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
+            ArgumentNullException.ThrowIfNull(rd);
+            ArgumentNullException.ThrowIfNull(adopt_prob_func);
 
             double r;
 
@@ -63,9 +49,7 @@ namespace ExRandom {
         }
 
         public static int Round(MT19937 mt, double v) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             int v_int = (int)Math.Floor(v);
             double v_frac = v - v_int;
@@ -74,9 +58,7 @@ namespace ExRandom {
         }
 
         public static bool[] Fill(MT19937 mt, int length, int true_num) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (length <= 0 || length < true_num) {
                 throw new ArgumentOutOfRangeException(nameof(length));
             }
@@ -118,9 +100,7 @@ namespace ExRandom {
         }
 
         public static bool[,] Fill(MT19937 mt, int length0, int length1, int true_num) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             int array_size;
 
@@ -148,9 +128,7 @@ namespace ExRandom {
         }
 
         public static bool[,,] Fill(MT19937 mt, int length0, int length1, int length2, int true_num) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             int array_size;
 
@@ -180,9 +158,7 @@ namespace ExRandom {
         }
 
         public static bool[,,,] Fill(MT19937 mt, int length0, int length1, int length2, int length3, int true_num) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             int array_size;
 

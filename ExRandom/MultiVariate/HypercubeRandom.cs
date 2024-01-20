@@ -7,9 +7,7 @@ namespace ExRandom.MultiVariate {
         public int Dim { get; }
 
         public HypercubeRandom(MT19937 mt, int dim) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (dim < 1) {
                 throw new ArgumentOutOfRangeException(nameof(dim));
             }

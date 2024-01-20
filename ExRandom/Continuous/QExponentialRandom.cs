@@ -10,9 +10,7 @@ namespace ExRandom.Continuous {
         public double Lambda { get; }
 
         public QExponentialRandom(MT19937 mt, double q = 0.5, double lambda = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(q < 2)) {
                 throw new ArgumentOutOfRangeException(nameof(q));
             }

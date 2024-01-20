@@ -10,9 +10,7 @@ namespace ExRandom.Continuous {
         public double Max { get; }
 
         public PowerFunctionRandom(MT19937 mt, double p = 1, double min = 0, double max = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(p > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(p));
             }

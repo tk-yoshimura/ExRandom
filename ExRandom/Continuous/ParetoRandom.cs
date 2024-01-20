@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double Beta { get; }
 
         public ParetoRandom(MT19937 mt, double alpha = 1, double beta = 1) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(alpha > 0)) {
                 throw new ArgumentOutOfRangeException(nameof(alpha));
             }

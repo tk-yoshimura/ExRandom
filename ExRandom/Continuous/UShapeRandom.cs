@@ -8,9 +8,7 @@ namespace ExRandom.Continuous {
         public double P { get; }
 
         public UShapeRandom(MT19937 mt, double p = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(p >= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(p));
             }

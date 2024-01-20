@@ -7,9 +7,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public LaplaceRandom(MT19937 mt, double b = 1, double mu = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.Mt = mt;
             this.B = b;

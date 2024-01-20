@@ -5,9 +5,7 @@ namespace ExRandom.Continuous {
         public MT19937 Mt { get; }
 
         public HyperbolicSecantRandom(MT19937 mt) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.Mt = mt;
         }

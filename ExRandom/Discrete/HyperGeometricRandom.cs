@@ -11,9 +11,7 @@ namespace ExRandom.Discrete {
         public int M { get; }
 
         public HyperGeometricRandom(MT19937 mt, int n = 30, int k = 20, int m = 10) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (n <= 0 || k <= 0 || m <= 0 || n < k || n < m) {
                 throw new ArgumentOutOfRangeException($"{nameof(n)}>={nameof(k)}>={nameof(m)}>0");
             }

@@ -7,9 +7,7 @@ namespace ExRandom.MultiVariate {
         public int Interval { get; }
 
         public IntervalPartitionDiscreteRandom(MT19937 mt, int dim = 3, int interval = 10) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (interval <= 0 || interval >= int.MaxValue / 2) {
                 throw new ArgumentOutOfRangeException(nameof(interval));
             }

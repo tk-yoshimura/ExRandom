@@ -10,9 +10,7 @@ namespace ExRandom.Discrete {
         public int Max { get; }
 
         public NegativeBinomialRandom(MT19937 mt, double prob = 0.5, int r = 4, int max = int.MaxValue) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (max < 1) {
                 throw new ArgumentOutOfRangeException(nameof(max));
             }

@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double M { get; }
 
         public LogNormalRandom(MT19937 mt, double s = 1, double m = 0) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.nd = new NormalRandom(mt, sigma: s, mu: m);
             this.Mt = mt;

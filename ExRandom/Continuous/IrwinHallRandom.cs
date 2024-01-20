@@ -6,9 +6,7 @@ namespace ExRandom.Continuous {
         public int N { get; }
 
         public IrwinHallRandom(MT19937 mt, int n = 3) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (n < 1) {
                 throw new ArgumentOutOfRangeException(nameof(n));
             }

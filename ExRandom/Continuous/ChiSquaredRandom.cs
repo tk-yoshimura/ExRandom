@@ -8,9 +8,7 @@ namespace ExRandom.Continuous {
         public uint K { get; }
 
         public ChiSquaredRandom(MT19937 mt, uint k = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (k < 1) {
                 throw new ArgumentOutOfRangeException(nameof(k));
             }

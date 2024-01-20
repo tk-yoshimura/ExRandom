@@ -8,9 +8,7 @@ namespace ExRandom.Continuous {
         public uint K { get; }
 
         public InverseChiSquaredRandom(MT19937 mt, uint k = 2) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
 
             this.cr = new ChiSquaredRandom(mt, k: k);
             this.Mt = mt;

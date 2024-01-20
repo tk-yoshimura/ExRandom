@@ -6,9 +6,7 @@ namespace ExRandom.Discrete {
         public double Prob { get; }
 
         public BernoulliRandom(MT19937 mt, double prob = 0.5) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(prob >= 0) || prob > 1) {
                 throw new ArgumentOutOfRangeException(nameof(prob));
             }

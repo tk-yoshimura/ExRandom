@@ -10,9 +10,7 @@ namespace ExRandom.Discrete {
         public int N { get; }
 
         public BinomialRandom(MT19937 mt, double prob = 0.5, int n = 10) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (n <= 0) {
                 throw new ArgumentOutOfRangeException(nameof(n));
             }

@@ -9,9 +9,7 @@ namespace ExRandom.Continuous {
         public double Mu { get; }
 
         public VonMisesRandom(MT19937 mt, double kappa, double mu) {
-            if (mt is null) {
-                throw new ArgumentNullException(nameof(mt));
-            }
+            ArgumentNullException.ThrowIfNull(mt);
             if (!(kappa >= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(kappa));
             }
