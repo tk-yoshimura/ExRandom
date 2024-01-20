@@ -73,10 +73,7 @@
 
 ## Install
 [Download DLL](https://github.com/tk-yoshimura/ExRandom/releases)  
-[Download Nuget package](https://www.nuget.org/packages/tyoshimura.exrandom/)
-
-- To install, just import the DLL.
-- This library does not change the environment at all.
+[Download Nuget](https://www.nuget.org/packages/tyoshimura.exrandom/)
 
 ## Licence
 [MIT](https://github.com/tk-yoshimura/ExRandom/blob/main/LICENSE)
