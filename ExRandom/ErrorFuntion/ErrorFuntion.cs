@@ -1,5 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System;
+﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace ExRandom {
     public static class ErrorFunction {
