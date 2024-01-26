@@ -1,6 +1,7 @@
 ﻿using ExRandomTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PNGGraphPlot;
+using System;
 using System.Drawing;
 
 namespace ExRandom.Continuous.Tests {
@@ -11,7 +12,7 @@ namespace ExRandom.Continuous.Tests {
             const int N = 5000000, X_MIN = -10, X_MAX = 40, X_SCALE = 10;
 
             MT19937 mt = new();
-            Random rd = new LandauRandom(mt, s: 1, mu: 0);
+            Random rd = new LandauRandom(mt, s: Math.PI / 2, mu: 0);
 
             (double[] cnt, double ave) = Util.Histogram(N, X_MIN, X_MAX, X_SCALE, rd);
 
