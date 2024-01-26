@@ -27,10 +27,16 @@ namespace ExRandom.Continuous {
         }
 
         public override double Next() {
-            double u = (Mt.NextDouble_OpenInterval01() - 0.5) * Math.PI;
-            double w = -Math.Log(Mt.NextDouble_OpenInterval0());
+            double x;
 
-            double x = ((pi_half + u) * Math.Tan(u) - Math.Log(pi_half * w * Math.Cos(u) / (pi_half + u))) / pi_half;
+            do {
+                double u = (Mt.NextDouble_OpenInterval01() - 0.5) * Math.PI;
+                double w = -Math.Log(Mt.NextDouble_OpenInterval01());
+
+                double v = pi_half + u;
+
+                x = (v * Math.Tan(u) - Math.Log(pi_half * w * Math.Cos(u) / v)) / pi_half;
+            } while (!double.IsFinite(x));
 
             return x * S + bias;
         }
