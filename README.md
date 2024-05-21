@@ -1,5 +1,8 @@
 # ExRandom
  Random number generation class group by various probability distributions 
+ 
+# *Most of the functionality has been moved! *
+### [DoubleDoubleStatistic](https://github.com/tk-yoshimura/DoubleDoubleStatistic)  
 
 ## Requirement
  .NET 8.0
