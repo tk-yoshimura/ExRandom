@@ -1,7 +1,7 @@
 # ExRandom
  Random number generation class group by various probability distributions 
  
-# *Most of the functionality has been moved! *
+# *Most functions were relocated! *
 ### [DoubleDoubleStatistic](https://github.com/tk-yoshimura/DoubleDoubleStatistic)  
 
 ## Requirement
